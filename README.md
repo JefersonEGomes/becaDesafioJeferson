@@ -16,4 +16,4 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ## Modelo Conceitual	
 
-![Modelo Conceitual - Me Empresta](D:\Workspace\MeEmpresta\Modelo Conceitual - Me Empresta.png)
+![Modelo Conceitual - Me Empresta](.\Modelo Conceitual - Me Empresta.png)

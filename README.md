@@ -4,7 +4,7 @@
 
 ### Enunciado do exercício
 
-https://docs.google.com/document/d/1scjjxm2n62pKSq-KBQHc4zVxqn4vyP3tV4fbKiTe1Ow/edit?usp=sharing
+[Documento do modelo Conceitual e funcionalidade do projeto](https://docs.google.com/document/d/1scjjxm2n62pKSq-KBQHc4zVxqn4vyP3tV4fbKiTe1Ow/edit?usp=sharing)
 
 ### Características do Me Empresta
 
@@ -16,4 +16,4 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ## Modelo Conceitual	
 
-![MeEmpresta.drawio](.\MeEmpresta.drawio.png)
+![MeEmpresta.drawio](D:\Workspace\becaDesafioJeferson\MeEmpresta.drawio.png)

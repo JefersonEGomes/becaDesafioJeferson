@@ -16,5 +16,5 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ## Modelo Conceitual
 
-![MeEmpresta.drawio](D:\Workspace\becaDesafioJeferson\MeEmpresta.drawio.png)
+![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/MeEmpresta.drawio.png)
 =======

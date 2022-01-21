@@ -2,6 +2,8 @@ package com.becaJavaJeferson.model;
 
 public class Locador extends Pessoa{
 
+    public Locador(){}
+
     private Integer idLocador;
 
     public Integer getIdLocador() {

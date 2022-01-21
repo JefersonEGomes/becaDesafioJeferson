@@ -1,5 +1,6 @@
 package com.becaJavaJeferson.model;
 
+// @Data para criar os getters e setters futuramente
 public class Produto {
     private Integer idProduto;
     private String nome;
@@ -46,4 +47,5 @@ public class Produto {
     public void setIdLocador(Integer idLocador) {
         this.idLocador = idLocador;
     }
+
 }

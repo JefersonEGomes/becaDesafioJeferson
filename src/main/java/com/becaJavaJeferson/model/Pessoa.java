@@ -9,6 +9,9 @@ public class Pessoa {
     private Integer telefone;
 
 
+    public Pessoa(){
+
+    }
     public Integer getIdPessoa() {
         return idPessoa;
     }

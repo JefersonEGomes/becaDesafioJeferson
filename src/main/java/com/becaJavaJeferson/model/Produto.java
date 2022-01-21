@@ -12,6 +12,17 @@ public class Produto {
         return idProduto;
     }
 
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "idProduto=" + idProduto +
+                ", nome='" + nome + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", preco=" + preco +
+                ", idLocador=" + idLocador +
+                '}';
+    }
+
     public void setIdProduto(Integer idProduto) {
         this.idProduto = idProduto;
     }

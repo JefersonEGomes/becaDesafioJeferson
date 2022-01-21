@@ -5,8 +5,8 @@ public class Pessoa {
     private Integer idPessoa;
     private String nome;
     private Integer idade;
-    private Integer cpf;
-    private Integer telefone;
+    private Long cpf;
+    private Long telefone;
 
 
     public Pessoa(){
@@ -36,19 +36,19 @@ public class Pessoa {
         this.idade = idade;
     }
 
-    public Integer getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
-    public Integer getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 }

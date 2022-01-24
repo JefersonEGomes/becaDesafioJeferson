@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 21,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,7 +79,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idLocador\": 2,\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910,\r\n    \"idPessoa\": 2\r\n\r\n}",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910,\r\n    \"id\": 2\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

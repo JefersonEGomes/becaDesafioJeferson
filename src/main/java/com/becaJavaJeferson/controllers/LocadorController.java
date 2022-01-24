@@ -2,18 +2,16 @@ package com.becaJavaJeferson.controllers;
 
 import com.becaJavaJeferson.model.Locador;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 @RestController
 @RequestMapping("/locador")
 public class LocadorController {
 
-    // CRUD
+    // CREATE
     @PostMapping
     public ResponseEntity<Locador> criarLocador(@RequestBody Locador locador){
 
@@ -24,17 +22,57 @@ public class LocadorController {
     }
 
     // READ
-    public class listaLocador{
+    @GetMapping
+    public ResponseEntity<List<Locador>> listaLocador(){
+        Locador locador1 = new Locador();
+        Locador locador2 = new Locador();
 
+        locador1.setIdLocador(1);
+        locador1.setNome("Jeferson");
+        locador1.setCpf(11111111111L);
+        locador1.setIdade(22);
+        locador1.setTelefone(819999999L);
+        locador1.setIdPessoa(1);
+
+        locador2.setIdLocador(2);
+        locador2.setNome("Jeferson");
+        locador2.setCpf(22222222222L);
+        locador2.setIdade(33);
+        locador2.setTelefone(81922222222L);
+        locador2.setIdPessoa(2);
+
+        return ResponseEntity.ok(List.of(
+                locador1,
+                locador2
+        ));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Locador> obterLocador(@PathVariable Integer id){
+        Locador locador3 = new Locador();
+        locador3.setIdLocador(id);
+        locador3.setIdPessoa(3);
+        locador3.setNome("Magnus");
+        locador3.setIdade(19);
+        locador3.setTelefone(81955555555L);
+        locador3.setCpf(12345678900L);
+
+        return ResponseEntity.ok(locador3);
     }
 
     // UPDATE
-    public class atualizarLocador{
+    @PatchMapping("/{id}")
+    public ResponseEntity<Locador> atualizarLocador(@RequestBody Locador locador, @PathVariable Integer id){
+        locador.setIdLocador(id);
+
+        return ResponseEntity.ok(locador);
 
     }
 
     // DELETE
-    public class deletarLocadore{
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletarLocador(@PathVariable Integer id){
 
+        return ResponseEntity.noContent().build();
     }
 }

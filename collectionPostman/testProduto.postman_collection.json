@@ -1,18 +1,18 @@
 {
 	"info": {
-		"_postman_id": "fe9733e4-b870-4337-95d8-2053d7f9b4bf",
-		"name": "testProduto",
+		"_postman_id": "dd489fb8-e0dd-4ef2-8713-7755388e6c25",
+		"name": "testLocacao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "TestCriar",
+			"name": "CriarLocacao",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nome\": \"Ferrari F40\",\r\n    \"categoria\": \"Brinquedo\",\r\n    \"preco\": 225.00,\r\n    \"idLocador\": 1\r\n}",
+					"raw": "{\r\n    \"idLocacao\": 1,\r\n    \"idLocatario\": 2,\r\n    \"idLocador\": 3,\r\n    \"idProduto\": 5,\r\n    \"dataLocacao\": \"24/01/2022\",\r\n    \"dataDevolve\": \"10/08/2022\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,59 +20,52 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/produto",
+					"raw": "http://localhost:8080/locacao",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"produto"
+						"locacao"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "TestAtualizar",
+			"name": "ListaLocacao",
 			"request": {
-				"method": "PATCH",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"idProduto\": 5,\r\n    \"nome\": \"Ferrari F40\",\r\n    \"categoria\": \"Brinquedo\",\r\n    \"preco\": 225.00,\r\n    \"idLocador\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/produto/4",
+					"raw": "http://localhost:8080/locacao",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"produto",
-						"4"
+						"locacao"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "TestDelete",
+			"name": "ObterLocacao",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/produto/3",
+					"raw": "http://localhost:8080/locacao/3",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"produto",
+						"locacao",
 						"3"
 					]
 				}
@@ -80,37 +73,58 @@
 			"response": []
 		},
 		{
-			"name": "TesteObter",
+			"name": "AtualizaLocacao",
 			"request": {
-				"method": "GET",
+				"method": "PATCH",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idLocacao\": 1,\r\n    \"idLocatario\": 2,\r\n    \"idLocador\": 3,\r\n    \"idProduto\": 5,\r\n    \"dataLocacao\": \"24/01/2022\",\r\n    \"dataDevolve\": \"10/08/2022\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/produto/1",
+					"raw": "http://localhost:8080/locacao/3",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"produto",
-						"1"
+						"locacao",
+						"3"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "ListagemProdutos",
+			"name": "DeletarLocacao",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/produto",
+					"raw": "http://localhost:8080/locacao/3",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"produto"
+						"locacao",
+						"3"
 					]
 				}
 			},

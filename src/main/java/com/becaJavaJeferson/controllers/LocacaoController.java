@@ -14,7 +14,7 @@ public class LocacaoController {
 
     //CREATE
     @PostMapping
-    public ResponseEntity<Locacao> criarLocacao(@RequestBody Locacao locacao) {
+    public ResponseEntity<Locacao> criar(@RequestBody Locacao locacao) {
         Random id = new Random();
         locacao.setIdLocacao(id.nextInt(1000));
 
@@ -23,7 +23,7 @@ public class LocacaoController {
 
     //READ
     @GetMapping
-    public ResponseEntity<List<Locacao>> listaLocacao(){
+    public ResponseEntity<List<Locacao>> listar(){
         Locacao locacao1 = new Locacao();
         Locacao locacao2 = new Locacao();
 
@@ -48,7 +48,7 @@ public class LocacaoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Locacao> obterLocacao(@PathVariable Integer id){
+    public ResponseEntity<Locacao> obter(@PathVariable Integer id){
         Locacao locacao3 = new Locacao();
 
         locacao3.setIdLocacao(id);
@@ -63,7 +63,7 @@ public class LocacaoController {
 
     //UPDATE
     @PatchMapping("/{id}")
-    public ResponseEntity<Locacao> atualizarLocaco(@RequestBody Locacao locacao,@PathVariable Integer id){
+    public ResponseEntity<Locacao> atualizar(@RequestBody Locacao locacao,@PathVariable Integer id){
         locacao.setIdLocacao(id);
 
         return ResponseEntity.ok(locacao);
@@ -71,7 +71,7 @@ public class LocacaoController {
 
     //Delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarLocacao(@PathVariable Integer id){
+    public ResponseEntity<String> deletar(@PathVariable Integer id){
 
         return ResponseEntity.noContent().build();
     }

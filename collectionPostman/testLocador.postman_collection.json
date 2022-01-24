@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "2f912350-9920-4baa-bf7a-dfa52657398b",
+		"name": "testLocador",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CriarLocador",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locador",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListaLocador",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locador",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObterLocadorID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locador/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locador",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AtualizaLocador",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idLocador\": 2,\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910,\r\n    \"idPessoa\": 2\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locador/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locador",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletarLocador",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locador/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locador",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

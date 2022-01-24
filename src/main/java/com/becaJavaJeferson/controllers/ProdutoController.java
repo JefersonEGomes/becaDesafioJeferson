@@ -13,7 +13,7 @@ public class ProdutoController {
 
     //CREATE
     @PostMapping
-    public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto){
+    public ResponseEntity<Produto> criar(@RequestBody Produto produto){
 
         Random randomId = new Random();
         produto.setIdProduto(randomId.nextInt(1000));
@@ -28,7 +28,7 @@ public class ProdutoController {
 
     // READ
     @GetMapping
-    public ResponseEntity<List<Produto>> listarProduto(){
+    public ResponseEntity<List<Produto>> listar(){
         Produto prod1 = new Produto();
         prod1.setIdProduto(1);
         prod1.setNome("Controle Xbox");
@@ -61,7 +61,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> obterProduto(@PathVariable Integer id){
+    public ResponseEntity<Produto> obter(@PathVariable Integer id){
         Produto prod1 = new Produto();
         prod1.setIdProduto(id);
         prod1.setNome("Controle Xbox");
@@ -74,7 +74,7 @@ public class ProdutoController {
 
     // UPDATE
     @PatchMapping("/{id}")
-    public ResponseEntity<Produto> atualizarProduto(@RequestBody Produto produto, @PathVariable Integer id){
+    public ResponseEntity<Produto> atualizar(@RequestBody Produto produto, @PathVariable Integer id){
         produto.setIdProduto(id);
 
         return ResponseEntity.ok(produto);
@@ -82,7 +82,7 @@ public class ProdutoController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarProduto(@PathVariable Integer id){
+    public ResponseEntity<String> deletar(@PathVariable Integer id){
 
         return ResponseEntity.noContent().build();
 

@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "dd489fb8-e0dd-4ef2-8713-7755388e6c25",
+		"name": "testLocacao",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CriarLocacao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idLocacao\": 1,\r\n    \"idLocatario\": 2,\r\n    \"idLocador\": 3,\r\n    \"idProduto\": 5,\r\n    \"dataLocacao\": \"24/01/2022\",\r\n    \"dataDevolve\": \"10/08/2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locacao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListaLocacao",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locacao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObterLocacao",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locacao/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locacao",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AtualizaLocacao",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idLocacao\": 1,\r\n    \"idLocatario\": 2,\r\n    \"idLocador\": 3,\r\n    \"idProduto\": 5,\r\n    \"dataLocacao\": \"24/01/2022\",\r\n    \"dataDevolve\": \"10/08/2022\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locacao/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locacao",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletarLocacao",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locacao/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locacao",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,18 +1,31 @@
 package com.becaJavaJeferson.model;
 
+// @Data para criar os getters e setters futuramente
 public class Produto {
-    private Integer idProduto;
+    private Integer id;
     private String nome;
     private String categoria;
     private Double preco;
-    private Integer idLocador;
+    private Locador locador;
 
-    public Integer getIdProduto() {
-        return idProduto;
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "idProduto=" + id +
+                ", nome='" + nome + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", preco=" + preco +
+                ", idLocador=" + locador.getId() +
+                '}';
     }
 
-    public void setIdProduto(Integer idProduto) {
-        this.idProduto = idProduto;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -39,11 +52,11 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Integer getIdLocador() {
-        return idLocador;
+    public Locador getLocador() {
+        return locador;
     }
 
-    public void setIdLocador(Integer idLocador) {
-        this.idLocador = idLocador;
+    public void setLocador(Locador locador) {
+        this.locador = locador;
     }
 }

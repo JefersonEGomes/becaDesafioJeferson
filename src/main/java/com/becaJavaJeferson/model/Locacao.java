@@ -1,59 +1,63 @@
 package com.becaJavaJeferson.model;
 
+import java.time.LocalDate;
+
 public class Locacao {
 
-    private Integer idLocacao;
-    private Integer idLocatario;
-    private Integer idLocador;
-    private Integer idProduto;
-    private String dataLocacao;
-    private String dataDevolve;
+    private Integer id;
+    private Locatario locatario;
+    private Locador locador;
+    private Produto produto;
+    private LocalDate dataAluguel;
+    private LocalDate dataDevolve;
 
-    public Integer getIdLocacao() {
-        return idLocacao;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdLocacao(Integer idLocacao) {
-        this.idLocacao = idLocacao;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getIdLocatario() {
-        return idLocatario;
+    public Integer getLocatario() {
+        return locatario.getId();
     }
 
-    public void setIdLocatario(Integer idLocatario) {
-        this.idLocatario = idLocatario;
+    public LocalDate getDataAluguel() {
+        return dataAluguel;
     }
 
-    public Integer getIdLocador() {
-        return idLocador;
+    public void setDataAluguel(LocalDate dataAluguel) {
+        this.dataAluguel = dataAluguel;
     }
 
-    public void setIdLocador(Integer idLocador) {
-        this.idLocador = idLocador;
-    }
-
-    public Integer getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Integer idProduto) {
-        this.idProduto = idProduto;
-    }
-
-    public String getDataLocacao() {
-        return dataLocacao;
-    }
-
-    public void setDataLocacao(String dataLocacao) {
-        this.dataLocacao = dataLocacao;
-    }
-
-    public String getDataDevolve() {
+    public LocalDate getDataDevolve() {
         return dataDevolve;
     }
 
-    public void setDataDevolve(String dataDevolve) {
+    public void setDataDevolve(LocalDate dataDevolve) {
         this.dataDevolve = dataDevolve;
     }
+
+    public void setLocatario(Locatario locatario) {
+        this.locatario = locatario;
+    }
+
+    public Locador getLocador() {
+        return locador;
+    }
+
+    public void setLocador(Locador locador) {
+        this.locador = locador;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+
 }

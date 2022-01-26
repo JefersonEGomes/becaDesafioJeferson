@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "4788eb10-952d-4230-ade6-9be6f0c2688f",
+		"name": "testLocatario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CriarLocatario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"id\": 1,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locatario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListaLocatario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locatario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObterLocatario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/locatario/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatario",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AtualizaLocatario",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910,\r\n    \"id\": 2\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locatario/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatario",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletarLocatario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Jeferson\",\r\n    \"idade\": 20,\r\n    \"cpf\": 12345678910,\r\n    \"telefone\": 12345678910\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/locatario/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"locatario",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

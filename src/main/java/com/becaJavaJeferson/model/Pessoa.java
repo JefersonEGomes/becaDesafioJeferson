@@ -2,22 +2,22 @@ package com.becaJavaJeferson.model;
 
 public class Pessoa {
 
-    private Integer idPessoa;
+    private Integer id;
     private String nome;
     private Integer idade;
-    private Integer cpf;
-    private Integer telefone;
+    private Long cpf;
+    private Long telefone;
 
 
     public Pessoa(){
 
     }
-    public Integer getIdPessoa() {
-        return idPessoa;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPessoa(Integer idPessoa) {
-        this.idPessoa = idPessoa;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -36,19 +36,19 @@ public class Pessoa {
         this.idade = idade;
     }
 
-    public Integer getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
-    public Integer getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 }

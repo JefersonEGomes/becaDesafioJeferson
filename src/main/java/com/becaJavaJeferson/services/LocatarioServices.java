@@ -1,15 +1,14 @@
 package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.model.Locatario;
-import org.springframework.http.ResponseEntity;
+import com.becaJavaJeferson.repository.LocatarioInterface;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
-public class LocatarioServices {
+public class LocatarioServices implements LocatarioInterface {
 
     //CREATE
     public Locatario criar(Locatario locatario){

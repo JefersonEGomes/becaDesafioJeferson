@@ -4,6 +4,7 @@ import com.becaJavaJeferson.model.Locacao;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.model.Produto;
+import com.becaJavaJeferson.repository.LocacaoInterface;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class LocacaoService {
+public class LocacaoService implements LocacaoInterface{
 
     //CREATE
     public Locacao criar(Locacao locacao) {

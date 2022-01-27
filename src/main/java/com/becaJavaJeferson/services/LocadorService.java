@@ -1,13 +1,14 @@
 package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.model.Locador;
+import com.becaJavaJeferson.repository.LocadorInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
-public class LocadorService {
+public class LocadorService implements LocadorInterface{
 
     // CREATE
     public Locador criar(Locador locador){

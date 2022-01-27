@@ -2,6 +2,7 @@ package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Produto;
+import com.becaJavaJeferson.repository.ProdutoInterface;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class ProdutoService {
+public class ProdutoService implements ProdutoInterface {
     //CREATE
     public Produto criar(Produto produto){
 

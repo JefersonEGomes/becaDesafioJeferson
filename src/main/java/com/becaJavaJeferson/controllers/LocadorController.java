@@ -1,77 +1,56 @@
 package com.becaJavaJeferson.controllers;
 
 import com.becaJavaJeferson.model.Locador;
+import com.becaJavaJeferson.services.LocadorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/locador")
 public class LocadorController {
 
+    @Autowired
+    private LocadorService locadorService;
+
     // CREATE
     @PostMapping
     public ResponseEntity<Locador> criar(@RequestBody Locador locador){
+        Locador criarLocador = locadorService.criar(locador);
 
-        Random randomId = new Random();
-        locador.setId(randomId.nextInt(1000));
 
-        return ResponseEntity.created(null).body(locador);
+        return ResponseEntity.created(null).body(criarLocador);
     }
 
     // READ
     @GetMapping
     public ResponseEntity<List<Locador>> listar(){
-        Locador locador1 = new Locador();
-        Locador locador2 = new Locador();
+        List<Locador> listaLocadores = locadorService.listar();
 
-        locador1.setId(1);
-        locador1.setNome("Jeferson");
-        locador1.setCpf(11111111111L);
-        locador1.setIdade(22);
-        locador1.setTelefone(819999999L);
-        locador1.setId(1);
-
-        locador2.setId(2);
-        locador2.setNome("Jeferson");
-        locador2.setCpf(22222222222L);
-        locador2.setIdade(33);
-        locador2.setTelefone(81922222222L);
-        locador2.setId(2);
-
-        return ResponseEntity.ok(List.of(
-                locador1,
-                locador2
-        ));
+        return ResponseEntity.ok(listaLocadores);
     }
 
-    @GetMapping("/{id}")
     public ResponseEntity<Locador> obter(@PathVariable Integer id){
-        Locador locador3 = new Locador();
-        locador3.setId(id);
-        locador3.setId(3);
-        locador3.setNome("Magnus");
-        locador3.setIdade(19);
-        locador3.setTelefone(81955555555L);
-        locador3.setCpf(12345678900L);
+        Locador obterLocador = locadorService.obter(id);
 
-        return ResponseEntity.ok(locador3);
+        return ResponseEntity.ok(obterLocador);
     }
 
     // UPDATE
     @PatchMapping("/{id}")
     public ResponseEntity<Locador> atualizar(@RequestBody Locador locador, @PathVariable Integer id){
-        locador.setId(id);
+        Locador atualizarLocador = locadorService.atualizar(locador, id);
 
-        return ResponseEntity.ok(locador);
+        return ResponseEntity.ok(atualizarLocador);
 
     }
 
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable Integer id){
+        locadorService.deletar(id);
 
         return ResponseEntity.noContent().build();
     }

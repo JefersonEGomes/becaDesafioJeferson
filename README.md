@@ -37,5 +37,5 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Implementação do OpenAPI
 
-![Swagger](D:\Workspace\becaDesafioJeferson\Swagg API.jpg)
+![Swagger](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/Swagg%20API.jpg)
 

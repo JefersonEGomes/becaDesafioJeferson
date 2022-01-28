@@ -4,7 +4,8 @@ import com.becaJavaJeferson.model.Locacao;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.model.Produto;
-import com.becaJavaJeferson.repository.LocacaoInterface;
+import com.becaJavaJeferson.repositories.LocacaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -13,23 +14,19 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class LocacaoService implements LocacaoInterface{
+public class LocacaoService {
+    @Autowired
+    private LocacaoRepository locacaoRepository;
 
     //CREATE
     public Locacao criar(Locacao locacao) {
-        Random id = new Random();
-        locacao.setId(id.nextInt(1000));
 
-        if(locacao.getLocador().getId().equals(locacao.getLocatario().getId())){
-            throw new RuntimeException("Você não pode realizar uma locação com você mesmo");
-        }
-
-        if(locacao.getDataAluguel().isBefore(locacao.getDataDevolve())){
+        if(locacao.getDataDevolve().isBefore(locacao.getDataAluguel())){
             throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
         }
 
-
-        return locacao;
+        Locacao locacaoSalva = locacaoRepository.save(locacao);
+        return locacaoSalva;
     }
 
     //READ

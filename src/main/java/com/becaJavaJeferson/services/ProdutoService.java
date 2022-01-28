@@ -2,20 +2,22 @@ package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Produto;
-import com.becaJavaJeferson.repository.ProdutoInterface;
-import org.springframework.http.ResponseEntity;
+import com.becaJavaJeferson.repositories.ProdutoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
-public class ProdutoService implements ProdutoInterface {
+public class ProdutoService {
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
     //CREATE
     public Produto criar(Produto produto){
 
-        Random randomId = new Random();
-        produto.setId(randomId.nextInt(1000));
 
         if( produto.getNome().length() <= 3){
             throw new RuntimeException("O nome do produto não pode ter menos de 4 caracteres");
@@ -26,7 +28,9 @@ public class ProdutoService implements ProdutoInterface {
             throw new RuntimeException("Por favor digite um preço acima de 0");
         }
 
-        return produto;
+        Produto produtoSalvo = produtoRepository.save(produto);
+
+        return produtoSalvo;
 
     }
 

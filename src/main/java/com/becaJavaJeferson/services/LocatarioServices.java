@@ -1,26 +1,29 @@
 package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.model.Locatario;
-import com.becaJavaJeferson.repository.LocatarioInterface;
+import com.becaJavaJeferson.repositories.LocatarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
-public class LocatarioServices implements LocatarioInterface {
+public class LocatarioServices{
+
+    @Autowired
+    private LocatarioRepository locatarioRepository;
 
     //CREATE
     public Locatario criar(Locatario locatario){
-        Random randomId = new Random();
-        locatario.setId(randomId.nextInt(1000));
 
         if( locatario.getNome().length() <= 3){
             throw new RuntimeException("O nome do Locatário não pode ter menos de 4 caracteres");
 
         }
 
-        return locatario;
+        Locatario locatarioSalvo = locatarioRepository.save(locatario);
+        return locatarioSalvo;
     }
 
     //READ

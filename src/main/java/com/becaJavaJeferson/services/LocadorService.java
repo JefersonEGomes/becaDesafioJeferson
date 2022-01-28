@@ -1,26 +1,29 @@
 package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.model.Locador;
-import com.becaJavaJeferson.repository.LocadorInterface;
+import com.becaJavaJeferson.repositories.LocadorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
-public class LocadorService implements LocadorInterface{
+public class LocadorService {
+
+    @Autowired
+    private LocadorRepository locadorRepository;
 
     // CREATE
     public Locador criar(Locador locador){
 
-        Random randomId = new Random();
-        locador.setId(randomId.nextInt(1000));
 
         if( locador.getNome().length() <= 3){
             throw new RuntimeException("O nome do Locador não pode ter menos de 4 caracteres");
         }
 
-        return locador;
+        Locador locadorSalvo = locadorRepository.save(locador);
+        return locadorSalvo;
     }
 
     // READ

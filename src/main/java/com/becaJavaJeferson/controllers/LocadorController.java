@@ -32,6 +32,7 @@ public class LocadorController {
         return ResponseEntity.ok(listaLocadores);
     }
 
+    @GetMapping("/{id}")
     public ResponseEntity<Locador> obter(@PathVariable Integer id){
         Locador obterLocador = locadorService.obter(id);
 

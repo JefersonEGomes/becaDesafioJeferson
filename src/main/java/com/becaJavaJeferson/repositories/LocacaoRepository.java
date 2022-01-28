@@ -9,13 +9,5 @@ import java.util.List;
 @Repository
 public interface LocacaoRepository extends JpaRepository<Locacao, Integer> {
 
-//    Locacao criar(Locacao locacao);
-//
-//    List<Locacao> listar();
-//
-//    Locacao obter(Integer id);
-//
-//    Locacao atualizar(Locacao locacao,Integer id);
-//
-//    void deletar(Integer id);
+
 }

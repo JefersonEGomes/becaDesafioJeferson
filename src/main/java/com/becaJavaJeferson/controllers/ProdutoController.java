@@ -2,6 +2,7 @@ package com.becaJavaJeferson.controllers;
 
 import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.services.ProdutoService;
+import com.becaJavaJeferson.services.serviceImp.ProdutoServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +51,7 @@ public class ProdutoController {
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable Integer id){
-            produtoService.deletar(id);
+        produtoService.deletar(id);
         return ResponseEntity.noContent().build();
 
     }

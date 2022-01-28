@@ -19,8 +19,12 @@ public class Locacao {
         this.id = id;
     }
 
-    public Integer getLocatario() {
-        return locatario.getId();
+    public Locatario getLocatario() {
+        return locatario;
+    }
+
+    public void setLocatario(Locatario locatario) {
+        this.locatario = locatario;
     }
 
     public LocalDate getDataAluguel() {
@@ -37,10 +41,6 @@ public class Locacao {
 
     public void setDataDevolve(LocalDate dataDevolve) {
         this.dataDevolve = dataDevolve;
-    }
-
-    public void setLocatario(Locatario locatario) {
-        this.locatario = locatario;
     }
 
     public Locador getLocador() {

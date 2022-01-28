@@ -1,3 +1,5 @@
+
+
 # Desafio Beca
 
 ## Projeto Me Empresta
@@ -18,3 +20,22 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/MeEmpresta.png)
 =======
+
+
+
+## Parte 2 do desafio 
+
+### Criação Das Classes Controllers ( CRUD )
+
+• Locação 
+
+• Locador
+
+• Locatário
+
+• Produto
+
+### Implementação do OpenAPI
+
+![Swagger](D:\Workspace\becaDesafioJeferson\Swagg API.jpg)
+

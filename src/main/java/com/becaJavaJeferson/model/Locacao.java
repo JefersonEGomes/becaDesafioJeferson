@@ -17,13 +17,12 @@ public class Locacao {
 
     @ManyToOne
     private Locatario locatario;
-    @ManyToOne
-    private Locador locador;
-    @ManyToOne
+
+    @OneToOne
     private Produto produto;
 
 
 
-
-
 }
+
+

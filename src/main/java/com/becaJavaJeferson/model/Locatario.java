@@ -1,10 +1,20 @@
 package com.becaJavaJeferson.model;
 
-import javax.persistence.Entity;
+import lombok.Data;
 
+import javax.persistence.*;
+
+@Data
 @Entity
-public class Locatario extends Pessoa{
+public class Locatario{
 
-    public Locatario(){}
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer id;
+        private String nome;
+        private Integer idade;
+        private Long cpf;
+        private Long telefone;
 
-}
+    }
+

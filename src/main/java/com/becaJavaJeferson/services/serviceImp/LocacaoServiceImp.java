@@ -19,7 +19,7 @@ public class LocacaoServiceImp implements LocacaoService {
     @Override
     public Locacao criar(Locacao locacao) {
 
-        if (locacao.getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
+        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
             throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
         }
 
@@ -58,10 +58,9 @@ public class LocacaoServiceImp implements LocacaoService {
         locacaoObtida.setDataAluguel( locacao.getDataAluguel());
         locacaoObtida.setDataDevolve( locacao.getDataDevolve());
         locacaoObtida.setProduto( locacao.getProduto());
-        locacaoObtida.setLocador( locacao.getLocador());
         locacaoObtida.setLocatario( locacao.getLocatario());
 
-        if (locacao.getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
+        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
             throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
         }
 

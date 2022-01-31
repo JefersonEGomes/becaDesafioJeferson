@@ -1,7 +1,5 @@
 package com.becaJavaJeferson.model;
 
-// @Data para criar os getters e setters futuramente
-
 import lombok.Data;
 
 import javax.persistence.*;

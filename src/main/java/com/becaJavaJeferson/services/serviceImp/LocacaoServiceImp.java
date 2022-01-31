@@ -1,21 +1,16 @@
 package com.becaJavaJeferson.services.serviceImp;
 
 import com.becaJavaJeferson.model.Locacao;
-import com.becaJavaJeferson.model.Locador;
-import com.becaJavaJeferson.model.Locatario;
-import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.repositories.LocacaoRepository;
 import com.becaJavaJeferson.services.LocacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class LocacaoServiceImp implements LocacaoService {
+
     @Autowired
     private LocacaoRepository locacaoRepository;
 
@@ -51,7 +46,6 @@ public class LocacaoServiceImp implements LocacaoService {
 
         if(locacao == null){
             throw new RuntimeException("O id da locação não foi encontrado");
-            
         }
 
         return locacao;

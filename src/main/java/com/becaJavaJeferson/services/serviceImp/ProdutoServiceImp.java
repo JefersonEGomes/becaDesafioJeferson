@@ -1,6 +1,5 @@
 package com.becaJavaJeferson.services.serviceImp;
 
-import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.repositories.ProdutoRepository;
 import com.becaJavaJeferson.services.ProdutoService;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class ProdutoServiceImp implements ProdutoService {

@@ -20,7 +20,7 @@ public class LocacaoController {
     public ResponseEntity<Locacao> criar(@RequestBody Locacao locacao) {
         Locacao criarLocacao = locacaoService.criar(locacao);
 
-        return ResponseEntity.created(null).body(locacao);
+        return ResponseEntity.created(null).body(criarLocacao);
     }
 
     //READ

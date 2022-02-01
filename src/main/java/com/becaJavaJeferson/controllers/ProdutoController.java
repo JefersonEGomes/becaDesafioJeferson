@@ -50,7 +50,7 @@ public class ProdutoController {
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable Integer id){
-            produtoService.deletar(id);
+        produtoService.deletar(id);
         return ResponseEntity.noContent().build();
 
     }

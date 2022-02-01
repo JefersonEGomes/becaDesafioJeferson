@@ -18,9 +18,7 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ## Modelo Conceitual
 
-
 ![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/MeEmpresta.png)
-
 
 
 
@@ -38,8 +36,7 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Implementação do OpenAPI
 
-
-![Swagger](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/Swagg%20API.jpg)
+![Swagger](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/master/Swagg%20API.jpg)
 
 
 
@@ -47,9 +44,12 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Criação das classes services na sua API
 
-![Services](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/Services.png)
+![Services](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/master/Services.png)
+
 
 ### Implementação das interfaces
 
-![Interfaces](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/Interfaces.png)
+![Interfaces](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/master/Interfaces.png)
+
+
 

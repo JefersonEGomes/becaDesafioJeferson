@@ -1,3 +1,5 @@
+
+
 # Desafio Beca
 
 ## Projeto Me Empresta
@@ -17,4 +19,37 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 ## Modelo Conceitual
 
 ![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/MeEmpresta.png)
-=======
+
+
+
+## Parte 2 do desafio 
+
+### Criação Das Classes Controllers ( CRUD )
+
+• Locação 
+
+• Locador
+
+• Locatário
+
+• Produto
+
+### Implementação do OpenAPI
+
+![Swagger](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/master/Swagg%20API.jpg)
+
+
+
+## Parte 3 do desafio
+
+### Criação das classes services na sua API
+
+![Services](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/master/Services.png)
+
+
+### Implementação das interfaces
+
+![Interfaces](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/master/Interfaces.png)
+
+
+

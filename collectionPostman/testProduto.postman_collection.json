@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "fe9733e4-b870-4337-95d8-2053d7f9b4bf",
+		"name": "testProduto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TestCriar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Ferrari F40\",\r\n    \"categoria\": \"Brinquedo\",\r\n    \"preco\": 225.00,\r\n    \"locador\": {\r\n            \"id\": 3,\r\n            \"nome\": \"João\",\r\n            \"idade\": 22,\r\n            \"cpf\": 12345678900,\r\n            \"telefone\": 81945678900\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/produto",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestAtualizar",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 49,\r\n    \"nome\": \"Ferrari F40\",\r\n    \"categoria\": \"Brinquedo\",\r\n    \"preco\": 225.0,\r\n    \"locador\": {\r\n        \"id\": 3,\r\n        \"nome\": \"João\",\r\n        \"idade\": 22,\r\n        \"cpf\": 12345678900,\r\n        \"telefone\": 81945678900\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/produto/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"produto",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestDelete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/produto/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"produto",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TesteObter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/produto/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"produto",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListagemProdutos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/produto",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"produto"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

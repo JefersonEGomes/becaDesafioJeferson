@@ -47,9 +47,9 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Criação das classes services na sua API
 
-![Services](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio4alt/Services.png)
+![Services](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/Services.png)
 
 ### Implementação das interfaces
 
-![Swagger](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/Swagg%20API.jpg)
+![Interfaces](https://github.com/JefersonEGOmes/becaDesafioJeferson/blob/fevelop/Interfaces.png)
 

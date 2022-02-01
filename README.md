@@ -51,5 +51,5 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Implementação das interfaces
 
-![Interfaces](https://github.com/JefersonEGOmes/becaDesafioJeferson/blob/fevelop/Interfaces.png)
+![Interfaces](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/Interfaces.png)
 

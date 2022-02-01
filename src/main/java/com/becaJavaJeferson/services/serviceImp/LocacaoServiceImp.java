@@ -19,16 +19,16 @@ public class LocacaoServiceImp implements LocacaoService {
     @Override
     public Locacao criar(Locacao locacao) {
 
-        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
-            throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
-        }
+//        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
+//            throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
+//        }
+//
+//        if(locacao.getDataDevolve().isBefore(locacao.getDataAluguel())){
+//            throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
+//        }
 
-        if(locacao.getDataDevolve().isBefore(locacao.getDataAluguel())){
-            throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
-        }
+       return locacaoRepository.save(locacao);
 
-        Locacao locacaoSalva = locacaoRepository.save(locacao);
-        return locacaoSalva;
     }
 
     //READ

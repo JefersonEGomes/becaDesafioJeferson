@@ -1,12 +1,14 @@
 package com.becaJavaJeferson.services;
 
+import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
 import com.becaJavaJeferson.model.Locador;
 
 import java.util.List;
 
 public interface LocadorService {
 
-    Locador criar (Locador locador);
+    PostLocadorResponse criar (PostLocadorRequest postLocadorRequest);
 
     List<Locador> listar();
 

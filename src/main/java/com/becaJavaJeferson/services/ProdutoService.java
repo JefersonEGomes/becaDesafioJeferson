@@ -1,7 +1,7 @@
 package com.becaJavaJeferson.services;
 
-import com.becaJavaJeferson.dtos.requests.PostProdutoRequest;
-import com.becaJavaJeferson.dtos.responses.PostProdutoResponse;
+import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.model.Produto;
 
 import java.util.List;

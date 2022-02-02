@@ -1,9 +1,8 @@
 package com.becaJavaJeferson.controllers;
 
-import com.becaJavaJeferson.dtos.requests.PostLocatarioRequest;
-import com.becaJavaJeferson.dtos.responses.PostLocatarioResponse;
+import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
-import com.becaJavaJeferson.services.LocatarioService;
 import com.becaJavaJeferson.services.serviceImp.LocatarioServicesImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/locatario")
 public class LocatarioController {
-
-    // 0:35:41
 
     @Autowired
     private LocatarioServicesImp locatarioService;

@@ -1,7 +1,7 @@
 package com.becaJavaJeferson.services.serviceImp;
 
-import com.becaJavaJeferson.dtos.requests.PostLocatarioRequest;
-import com.becaJavaJeferson.dtos.responses.PostLocatarioResponse;
+import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.repositories.LocatarioRepository;
 import com.becaJavaJeferson.services.LocatarioService;
@@ -19,7 +19,6 @@ public class LocatarioServicesImp  implements LocatarioService{
     //CREATE
 
     public PostLocatarioResponse criar(PostLocatarioRequest postLocatarioRequest){
-
         Locatario locatario = new Locatario();
         locatario.setNome(postLocatarioRequest.getNome());
         locatario.setIdade(postLocatarioRequest.getIdade());

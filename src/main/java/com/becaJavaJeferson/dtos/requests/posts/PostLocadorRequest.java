@@ -1,7 +1,6 @@
-package com.becaJavaJeferson.dtos.requests;
+package com.becaJavaJeferson.dtos.requests.posts;
 
-public class PostLocatarioRequest {
-
+public class PostLocadorRequest {
     private String nome;
     private Integer idade;
     private Long cpf;
@@ -38,7 +37,4 @@ public class PostLocatarioRequest {
     public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
-
-
-
 }

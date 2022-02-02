@@ -1,4 +1,4 @@
-package com.becaJavaJeferson.dtos.requests;
+package com.becaJavaJeferson.dtos.requests.posts;
 
 public class PostProdutoRequest {
 

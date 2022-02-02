@@ -1,11 +1,18 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.posts.PostLocacaoRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
 import com.becaJavaJeferson.model.Locacao;
+import com.becaJavaJeferson.model.Locatario;
+import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.repositories.LocacaoRepository;
 import com.becaJavaJeferson.services.LocacaoService;
+import com.becaJavaJeferson.services.LocatarioService;
+import com.becaJavaJeferson.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -14,10 +21,23 @@ public class LocacaoServiceImp implements LocacaoService {
     @Autowired
     private LocacaoRepository locacaoRepository;
 
+    @Autowired
+    private LocatarioService locatarioService;
+
+    @Autowired
+    private ProdutoService produtoService;
 
     //CREATE
-    @Override
-    public Locacao criar(Locacao locacao) {
+
+    public PostLocacaoResponse criar(PostLocacaoRequest postLocacaoRequest) {
+        Locatario locatarioObtido = locatarioService.obter(postLocacaoRequest.getIdLocatario());
+        Produto produtoObtido = produtoService.obter(postLocacaoRequest.getIdProduto());
+
+        Locacao locacao = new Locacao();
+        locacao.setDataDevolve(postLocacaoRequest.getDataDevolve());
+        locacao.setDataAluguel(postLocacaoRequest.getDataAluguel());
+        locacao.setLocatario(locatarioObtido);
+        locacao.setProduto(produtoObtido);
 
         if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
             throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
@@ -27,8 +47,12 @@ public class LocacaoServiceImp implements LocacaoService {
             throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
         }
 
+        PostLocacaoResponse postLocacaoResponse = new PostLocacaoResponse();
+        postLocacaoResponse.setMensagem("Sr(a) "+locatarioObtido.getNome()+" sua locação do produto "+produtoObtido.getNome()+" foi realizada com sucesso. Lembre-se" +
+                " de devolver em "+locacao.getDataDevolve().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+
         Locacao locacaoSalva = locacaoRepository.save(locacao);
-        return locacaoSalva;
+        return postLocacaoResponse;
     }
 
     //READ

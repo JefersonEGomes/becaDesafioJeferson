@@ -1,7 +1,7 @@
 package com.becaJavaJeferson.services;
 
-import com.becaJavaJeferson.dtos.requests.PostLocatarioRequest;
-import com.becaJavaJeferson.dtos.responses.PostLocatarioResponse;
+import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 
 import java.util.List;

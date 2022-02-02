@@ -1,7 +1,9 @@
 package com.becaJavaJeferson.controllers;
 
+import com.becaJavaJeferson.dtos.requests.posts.PostLocacaoRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
 import com.becaJavaJeferson.model.Locacao;
-import com.becaJavaJeferson.services.LocacaoService;
+import com.becaJavaJeferson.services.serviceImp.LocacaoServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +15,14 @@ import java.util.List;
 public class LocacaoController {
 
     @Autowired
-    private LocacaoService locacaoService;
+    private LocacaoServiceImp locacaoService;
 
     //CREATE
     @PostMapping
-    public ResponseEntity<Locacao> criar(@RequestBody Locacao locacao) {
-        Locacao criarLocacao = locacaoService.criar(locacao);
+    public ResponseEntity<PostLocacaoResponse> criar(@RequestBody PostLocacaoRequest postLocacaoRequest) {
+        PostLocacaoResponse postLocacaoResponse = locacaoService.criar(postLocacaoRequest);
 
-        return ResponseEntity.created(null).body(locacao);
+        return ResponseEntity.created(null).body(postLocacaoResponse);
     }
 
     //READ

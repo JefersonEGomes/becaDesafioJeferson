@@ -1,5 +1,7 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.repositories.LocadorRepository;
 import com.becaJavaJeferson.services.LocadorService;
@@ -15,16 +17,24 @@ public class LocadorServiceImp implements LocadorService {
     private LocadorRepository locadorRepository;
 
     // CREATE
-    @Override
-    public Locador criar(Locador locador){
 
+    public PostLocadorResponse criar(PostLocadorRequest postLocadorRequest){
+        Locador locador = new Locador();
+        locador.setNome(postLocadorRequest.getNome());
+        locador.setIdade(postLocadorRequest.getIdade());
+        locador.setTelefone(postLocadorRequest.getTelefone());
+        locador.setCpf(postLocadorRequest.getCpf());
 
         if( locador.getNome().length() <= 3){
             throw new RuntimeException("O nome do Locador não pode ter menos de 4 caracteres");
         }
 
         Locador locadorSalvo = locadorRepository.save(locador);
-        return locadorSalvo;
+
+        PostLocadorResponse postLocadorResponse = new PostLocadorResponse();
+        postLocadorResponse.setMensagem("Olá "+locadorSalvo.getNome()+" seu registro de locador foi criado com sucesso");
+
+        return postLocadorResponse;
     }
 
     // READ

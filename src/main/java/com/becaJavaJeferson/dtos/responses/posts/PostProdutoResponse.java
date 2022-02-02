@@ -1,4 +1,4 @@
-package com.becaJavaJeferson.dtos.responses;
+package com.becaJavaJeferson.dtos.responses.posts;
 
 public class PostProdutoResponse {
     private String mensagem;

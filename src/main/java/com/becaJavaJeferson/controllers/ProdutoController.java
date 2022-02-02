@@ -1,9 +1,9 @@
 package com.becaJavaJeferson.controllers;
 
-import com.becaJavaJeferson.dtos.requests.PostProdutoRequest;
-import com.becaJavaJeferson.dtos.responses.PostProdutoResponse;
+import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
+import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.model.Produto;
-import com.becaJavaJeferson.services.ProdutoService;
+import com.becaJavaJeferson.services.serviceImp.ProdutoServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService produtoService;
+    private ProdutoServiceImp produtoService;
 
     //CREATE
     @PostMapping

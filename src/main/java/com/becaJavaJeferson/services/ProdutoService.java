@@ -1,12 +1,14 @@
 package com.becaJavaJeferson.services;
 
+import com.becaJavaJeferson.dtos.requests.PostProdutoRequest;
+import com.becaJavaJeferson.dtos.responses.PostProdutoResponse;
 import com.becaJavaJeferson.model.Produto;
 
 import java.util.List;
 
 public interface ProdutoService {
 
-    Produto criar(Produto produto);
+    PostProdutoResponse criar(PostProdutoRequest postProdutoRequest);
 
     List<Produto> listar();
 

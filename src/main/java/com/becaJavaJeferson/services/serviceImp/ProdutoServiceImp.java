@@ -1,7 +1,11 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.PostProdutoRequest;
+import com.becaJavaJeferson.dtos.responses.PostProdutoResponse;
+import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.repositories.ProdutoRepository;
+import com.becaJavaJeferson.services.LocadorService;
 import com.becaJavaJeferson.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +16,21 @@ import java.util.List;
 public class ProdutoServiceImp implements ProdutoService {
 
     @Autowired
+    private LocadorService locadorService;
+
+    @Autowired
     private ProdutoRepository produtoRepository;
 
     //CREATE
     @Override
-    public Produto criar(Produto produto){
+    public PostProdutoResponse criar(PostProdutoRequest postProdutoRequest){
+        Locador locadorObtido = locadorService.obter(postProdutoRequest.getIdLocador());
+
+        Produto produto = new Produto();
+        produto.setNome(postProdutoRequest.getNome());
+        produto.setPreco(postProdutoRequest.getPreco());
+        produto.setCategoria(postProdutoRequest.getCategoria());
+        produto.setLocador(locadorObtido);
 
         if( produto.getNome().length() <= 3){
             throw new RuntimeException("O nome do produto não pode ter menos de 4 caracteres");
@@ -29,7 +43,10 @@ public class ProdutoServiceImp implements ProdutoService {
 
         Produto produtoSalvo = produtoRepository.save(produto);
 
-        return produtoSalvo;
+        PostProdutoResponse postProdutoResponse = new PostProdutoResponse();
+        postProdutoResponse.setMensagem(produtoSalvo.getNome() +" Cadastrado com Sucesso");
+
+        return postProdutoResponse;
 
     }
 

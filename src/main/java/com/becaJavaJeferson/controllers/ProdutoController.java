@@ -1,5 +1,7 @@
 package com.becaJavaJeferson.controllers;
 
+import com.becaJavaJeferson.dtos.requests.PostProdutoRequest;
+import com.becaJavaJeferson.dtos.responses.PostProdutoResponse;
 import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,11 @@ public class ProdutoController {
 
     //CREATE
     @PostMapping
-    public ResponseEntity<Produto> criar(@RequestBody Produto produto){
-        Produto produtoCriado = produtoService.criar(produto);
+    public ResponseEntity<PostProdutoResponse> criar(@RequestBody PostProdutoRequest postProdutoRequest){
 
-        return ResponseEntity.created(null).body(produtoCriado);
+        PostProdutoResponse postProdutoResponse = produtoService.criar(postProdutoRequest);
+
+        return ResponseEntity.created(null).body(postProdutoResponse);
 
     }
 

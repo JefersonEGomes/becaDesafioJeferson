@@ -1,7 +1,10 @@
 package com.becaJavaJeferson.controllers;
 
+import com.becaJavaJeferson.dtos.requests.PostLocatarioRequest;
+import com.becaJavaJeferson.dtos.responses.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.services.LocatarioService;
+import com.becaJavaJeferson.services.serviceImp.LocatarioServicesImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +16,17 @@ import java.util.List;
 @RequestMapping("/locatario")
 public class LocatarioController {
 
+    // 0:35:41
 
     @Autowired
-    private LocatarioService locatarioService;
+    private LocatarioServicesImp locatarioService;
 
     //CREATE
     @PostMapping
-    public ResponseEntity<Locatario> criar(@RequestBody Locatario locatario){
-        Locatario criarLocatario = locatarioService.criar(locatario);
+    public ResponseEntity<PostLocatarioResponse> criar(@RequestBody PostLocatarioRequest postLocatarioRequest){
+        PostLocatarioResponse postLocatarioResponse = locatarioService.criar(postLocatarioRequest);
 
-        return ResponseEntity.created(null).body(criarLocatario);
+        return ResponseEntity.created(null).body(postLocatarioResponse);
     }
 
     //READ

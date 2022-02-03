@@ -2,6 +2,7 @@ package com.becaJavaJeferson.controllers;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocatarioListResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.services.serviceImp.LocatarioServicesImp;
@@ -28,8 +29,8 @@ public class LocatarioController {
 
     //READ
     @GetMapping
-    public ResponseEntity<List<Locatario>> listar(){
-        List<Locatario> listaLocatario = locatarioService.listar();
+    public ResponseEntity<List<GetLocatarioListResponse>> listar(){
+        List<GetLocatarioListResponse> listaLocatario = locatarioService.listar();
 
         return ResponseEntity.ok(listaLocatario);
     }

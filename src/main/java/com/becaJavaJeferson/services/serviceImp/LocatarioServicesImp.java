@@ -2,6 +2,7 @@ package com.becaJavaJeferson.services.serviceImp;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocatarioListResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.repositories.LocatarioRepository;
@@ -9,6 +10,7 @@ import com.becaJavaJeferson.services.LocatarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,10 +43,13 @@ public class LocatarioServicesImp  implements LocatarioService{
 
     //READ
 
-    public List<Locatario> listar(){
+    public List<GetLocatarioListResponse> listar(){
         List<Locatario> listaLocatarios = locatarioRepository.findAll();
+        List<GetLocatarioListResponse> getLocatarioListar = new ArrayList<>();
 
-        return listaLocatarios;
+        listaLocatarios.stream().forEach(locatario -> getLocatarioListar.add(new GetLocatarioListResponse(locatario)));
+
+        return getLocatarioListar;
     }
 
 

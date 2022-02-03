@@ -119,8 +119,7 @@ public class ProdutoServiceImp implements ProdutoService {
     // DELETE
     @Override
     public void deletar(Integer id){
+
         produtoRepository.deleteById(id);
-
-
     }
 }

@@ -2,6 +2,7 @@ package com.becaJavaJeferson.services.serviceImp;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocadorListResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.repositories.LocadorRepository;
@@ -9,6 +10,7 @@ import com.becaJavaJeferson.services.LocadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,10 +43,13 @@ public class LocadorServiceImp implements LocadorService {
     // READ
     // vai ter request
     @Override
-    public List<Locador> listar(){
+    public List<GetLocadorListResponse> listar(){
         List<Locador> listaLocadores = locadorRepository.findAll();
+        List<GetLocadorListResponse> getLocadorListar = new ArrayList<>();
 
-        return listaLocadores;
+        listaLocadores.stream().forEach(locador -> getLocadorListar.add(new GetLocadorListResponse(locador)));
+
+        return getLocadorListar;
     }
 
     @Override

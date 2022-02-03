@@ -2,6 +2,7 @@ package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocatarioListResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 
@@ -11,7 +12,7 @@ public interface LocatarioService {
 
     PostLocatarioResponse criar (PostLocatarioRequest postLocatarioRequest);
 
-    List<Locatario> listar();
+    List<GetLocatarioListResponse> listar();
 
     GetLocatarioResponse obter (Integer id);
 

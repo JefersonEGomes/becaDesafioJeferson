@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+// Retirar o ID
+
 @Service
 public class LocacaoServiceImp implements LocacaoService {
 
@@ -37,6 +39,7 @@ public class LocacaoServiceImp implements LocacaoService {
     private ProdutoService produtoService;
 
     //CREATE
+    @Override
     public PostLocacaoResponse criar(PostLocacaoRequest postLocacaoRequest) {
         GetLocatarioResponse locatarioObtido = locatarioService.obter(postLocacaoRequest.getIdLocatario());
         Locatario locatario = new Locatario();
@@ -46,6 +49,7 @@ public class LocacaoServiceImp implements LocacaoService {
         locatario.setTelefone(locatarioObtido.getTelefone());
         locatario.setCpf(locatarioObtido.getCpf());
 
+
         GetLocadorResponse locadorObtido = locadorService.obter(postLocacaoRequest.getIdProduto());
         Locador locador = new Locador();
         locador.setId(locadorObtido.getId());
@@ -53,7 +57,6 @@ public class LocacaoServiceImp implements LocacaoService {
         locador.setIdade(locadorObtido.getIdade());
         locador.setTelefone(locadorObtido.getTelefone());
         locador.setCpf(locadorObtido.getCpf());
-
 
 
         GetProdutoResponse produtoObtido = produtoService.obter(postLocacaoRequest.getIdProduto());
@@ -102,18 +105,10 @@ public class LocacaoServiceImp implements LocacaoService {
         Locacao locacao = locacaoRepository.findById(id).get();
 
         GetLocadorResponse getLocadorResponse = new GetLocadorResponse();
-        getLocadorResponse.setId(locacao.getProduto().getLocador().getId());
-        getLocadorResponse.setNome(locacao.getProduto().getLocador().getNome());
-        getLocadorResponse.setIdade(locacao.getProduto().getLocador().getIdade());
-        getLocadorResponse.setTelefone(locacao.getProduto().getLocador().getTelefone());
-        getLocadorResponse.setCpf(locacao.getProduto().getLocador().getCpf());
+        getLocadorResponse(locacao, getLocadorResponse);
 
         GetLocatarioResponse getLocatarioResponse = new GetLocatarioResponse();
-        getLocatarioResponse.setId(locacao.getLocatario().getId());
-        getLocatarioResponse.setNome(locacao.getLocatario().getNome());
-        getLocatarioResponse.setIdade(locacao.getLocatario().getIdade());
-        getLocatarioResponse.setTelefone(locacao.getLocatario().getTelefone());
-        getLocatarioResponse.setCpf(locacao.getLocatario().getCpf());
+        getLocatarioResponse(locacao, getLocatarioResponse);
 
         GetProdutoResponse getProdutoResponse = new GetProdutoResponse();
         getProdutoResponse.setId(locacao.getProduto().getId());
@@ -134,6 +129,22 @@ public class LocacaoServiceImp implements LocacaoService {
         }
 
         return getLocacaoResponse;
+    }
+
+    private void getLocatarioResponse(Locacao locacao, GetLocatarioResponse getLocatarioResponse) {
+        getLocatarioResponse.setId(locacao.getLocatario().getId());
+        getLocatarioResponse.setNome(locacao.getLocatario().getNome());
+        getLocatarioResponse.setIdade(locacao.getLocatario().getIdade());
+        getLocatarioResponse.setTelefone(locacao.getLocatario().getTelefone());
+        getLocatarioResponse.setCpf(locacao.getLocatario().getCpf());
+    }
+
+    private void getLocadorResponse(Locacao locacao, GetLocadorResponse getLocadorResponse) {
+        getLocadorResponse.setId(locacao.getProduto().getLocador().getId());
+        getLocadorResponse.setNome(locacao.getProduto().getLocador().getNome());
+        getLocadorResponse.setIdade(locacao.getProduto().getLocador().getIdade());
+        getLocadorResponse.setTelefone(locacao.getProduto().getLocador().getTelefone());
+        getLocadorResponse.setCpf(locacao.getProduto().getLocador().getCpf());
     }
 
     //UPDATE

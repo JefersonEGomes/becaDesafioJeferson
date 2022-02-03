@@ -1,11 +1,13 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocacaoRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostLocacaoRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocacaoListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
 import com.becaJavaJeferson.model.Locacao;
 import com.becaJavaJeferson.model.Locador;
@@ -153,14 +155,13 @@ public class LocacaoServiceImp implements LocacaoService {
     }
 
     //UPDATE
-//    @Override
-//    public Locacao atualizar(Locacao locacao,Integer id){
-//        Locacao locacaoObtida = this.obter(id);
-//        locacaoObtida.setDataAluguel( locacao.getDataAluguel());
-//        locacaoObtida.setDataDevolve( locacao.getDataDevolve());
-//        locacaoObtida.setProduto( locacao.getProduto());
-//        locacaoObtida.setLocatario( locacao.getLocatario());
-//
+    @Override
+    public PatchLocacaoResponse atualizar(PatchLocacaoRequest patchLocacaoRequest, Integer id){
+
+        Locacao locacaoObtida = locacaoRepository.findById(id).get();
+        locacaoObtida.setDataAluguel( patchLocacaoRequest.getDataAluguel());
+        locacaoObtida.setDataDevolve( patchLocacaoRequest.getDataDevolve());
+
 //        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
 //            throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
 //        }
@@ -168,10 +169,14 @@ public class LocacaoServiceImp implements LocacaoService {
 //        if(locacao.getDataAluguel().isBefore(locacao.getDataDevolve())){
 //            throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
 //        }
-//
-//        locacaoRepository.save(locacaoObtida);
-//        return locacaoObtida;
-//    }
+
+        locacaoRepository.save(locacaoObtida);
+
+        PatchLocacaoResponse patchLocacaoResponse = new PatchLocacaoResponse();
+        patchLocacaoResponse.setMensagem("Locação atualizada com sucesso");
+
+        return patchLocacaoResponse;
+    }
 
     //Delete
     @Override

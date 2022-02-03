@@ -1,8 +1,10 @@
 package com.becaJavaJeferson.controllers;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocacaoRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostLocacaoRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocacaoListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
 import com.becaJavaJeferson.model.Locacao;
 import com.becaJavaJeferson.services.serviceImp.LocacaoServiceImp;
@@ -43,12 +45,12 @@ public class LocacaoController {
     }
 
     //UPDATE
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<Locacao> atualizar(@RequestBody Locacao locacao,@PathVariable Integer id){
-//        Locacao locacaoAtualizada = locacaoService.atualizar(locacao, id);
-//
-//        return ResponseEntity.ok(locacaoAtualizada);
-//    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<PatchLocacaoResponse> atualizar(@RequestBody PatchLocacaoRequest patchLocacaoRequest, @PathVariable Integer id){
+        PatchLocacaoResponse locacaoAtualizada = locacaoService.atualizar(patchLocacaoRequest, id);
+
+        return ResponseEntity.ok(locacaoAtualizada);
+    }
 
     //Delete
     @DeleteMapping("/{id}")

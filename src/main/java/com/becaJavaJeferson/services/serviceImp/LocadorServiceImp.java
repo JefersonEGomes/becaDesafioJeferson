@@ -1,8 +1,10 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocadorRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocadorListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.repositories.LocadorRepository;
@@ -41,7 +43,7 @@ public class LocadorServiceImp implements LocadorService {
     }
 
     // READ
-    // vai ter request
+
     @Override
     public List<GetLocadorListResponse> listar(){
         List<Locador> listaLocadores = locadorRepository.findAll();
@@ -72,22 +74,27 @@ public class LocadorServiceImp implements LocadorService {
     }
 
     // UPDATE
-//    @Override
-//    public Locador atualizar(Locador locador,Integer id){
-//        Locador locadorObtido = this.obter(id);
-//        locadorObtido.setNome( locador.getNome());
-//        locadorObtido.setCpf( locador.getCpf());
-//        locadorObtido.setIdade( locador.getIdade());
-//        locadorObtido.setTelefone( locador.getTelefone());
-//
-//        if( locador.getNome().length() <= 3){
-//            throw new RuntimeException("O nome do Locador não pode ter menos de 4 caracteres");
-//        }
-//
-//        locadorRepository.save(locadorObtido);
-//        return locadorObtido;
-//
-//    }
+    @Override
+    public PatchLocadorResponse atualizar(PatchLocadorRequest patchLocadorRequest, Integer id){
+
+        Locador locadorObtido = locadorRepository.findById(id).get();
+        locadorObtido.setNome( patchLocadorRequest.getNome());
+        locadorObtido.setCpf( patchLocadorRequest.getCpf());
+        locadorObtido.setIdade( patchLocadorRequest.getIdade());
+        locadorObtido.setTelefone( patchLocadorRequest.getTelefone());
+
+        if( locadorObtido.getNome().length() <= 3){
+            throw new RuntimeException("O nome do Locador não pode ter menos de 4 caracteres");
+        }
+
+        locadorRepository.save(locadorObtido);
+
+        PatchLocadorResponse patchLocadorResponse = new PatchLocadorResponse();
+        patchLocadorResponse.setMensagem("Locador "+locadorObtido.getNome()+" atualizado com sucesso");
+
+        return patchLocadorResponse;
+
+    }
 
     // DELETE
     @Override

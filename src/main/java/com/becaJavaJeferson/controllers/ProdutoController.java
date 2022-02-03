@@ -1,10 +1,11 @@
 package com.becaJavaJeferson.controllers;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchProdutoRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetProdutoListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
-import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.services.serviceImp.ProdutoServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,12 +47,12 @@ public class ProdutoController {
     }
 
     // UPDATE
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<Produto> atualizar(@RequestBody Produto produto, @PathVariable Integer id){
-//        Produto produtoAtualizado = produtoService.atualizar(produto, id);
-//
-//        return ResponseEntity.ok(produtoAtualizado);
-//    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<PatchProdutoResponse> atualizar(@RequestBody PatchProdutoRequest patchProdutoRequest, @PathVariable Integer id){
+        PatchProdutoResponse produtoAtualizado = produtoService.atualizar(patchProdutoRequest, id);
+
+        return ResponseEntity.ok(produtoAtualizado);
+    }
 
     // DELETE
     @DeleteMapping("/{id}")

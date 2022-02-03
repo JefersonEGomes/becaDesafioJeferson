@@ -1,9 +1,11 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchProdutoRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetProdutoListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Produto;
@@ -83,17 +85,21 @@ public class ProdutoServiceImp implements ProdutoService {
 
 
         GetProdutoResponse getProdutoResponse = new GetProdutoResponse();
-        getProdutoResponse.setId(produto.getId());
-        getProdutoResponse.setNome(produto.getNome());
-        getProdutoResponse.setCategoria(produto.getCategoria());
-        getProdutoResponse.setPreco(produto.getPreco());
-        getProdutoResponse.setGetLocadorResponse(getLocadorResponse);
+        getProdutoResponse(produto, getLocadorResponse, getProdutoResponse);
 
         if(produto == null){
             throw new RuntimeException("O id do produto não foi encontrado");
         }
 
         return getProdutoResponse;
+    }
+
+    private void getProdutoResponse(Produto produto, GetLocadorResponse getLocadorResponse, GetProdutoResponse getProdutoResponse) {
+        getProdutoResponse.setId(produto.getId());
+        getProdutoResponse.setNome(produto.getNome());
+        getProdutoResponse.setCategoria(produto.getCategoria());
+        getProdutoResponse.setPreco(produto.getPreco());
+        getProdutoResponse.setGetLocadorResponse(getLocadorResponse);
     }
 
     private void getLocadorResponse(Produto produto, GetLocadorResponse getLocadorResponse) {
@@ -105,25 +111,30 @@ public class ProdutoServiceImp implements ProdutoService {
     }
 
     // UPDATE
-//    @Override
-//    public Produto atualizar(Produto produto, Integer id){
-//        Produto produtoObtido = this.obter(id);
-//        produtoObtido.setNome( produto.getNome() );
-//        produtoObtido.setPreco( produto.getPreco() );
-//        produtoObtido.setCategoria( produto.getCategoria() );
-//        produtoObtido.setLocador( produto.getLocador() );
-//
-//        if( produto.getNome().length() <= 3){
-//            throw new RuntimeException("O nome do Produto não pode ter menos de 4 caracteres");
-//        }
-//
-//        if(produto.getPreco().longValue() <= 0){
-//            throw new RuntimeException("Por favor digite um preço acima de 0");
-//        }
-//
-//        produtoRepository.save(produtoObtido);
-//        return produtoObtido;
-//    }
+    @Override
+    public PatchProdutoResponse atualizar(PatchProdutoRequest patchProdutoRequest, Integer id){
+
+        Produto produtoObtido = produtoRepository.findById(id).get();
+        produtoObtido.setNome( patchProdutoRequest.getNome() );
+        produtoObtido.setPreco( patchProdutoRequest.getPreco() );
+        produtoObtido.setCategoria( patchProdutoRequest.getCategoria() );
+
+
+        if( patchProdutoRequest.getNome().length() <= 3){
+            throw new RuntimeException("O nome do Produto não pode ter menos de 4 caracteres");
+        }
+
+        if(patchProdutoRequest.getPreco().longValue() <= 0){
+            throw new RuntimeException("Por favor digite um preço acima de 0");
+        }
+
+        produtoRepository.save(produtoObtido);
+
+        PatchProdutoResponse patchProdutoResponse = new PatchProdutoResponse();
+        patchProdutoResponse.setMensagem("Produto "+produtoObtido.getNome()+" atualizado com sucesso");
+
+        return patchProdutoResponse;
+    }
 
     // DELETE
     @Override

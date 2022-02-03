@@ -1,10 +1,11 @@
 package com.becaJavaJeferson.controllers;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocadorRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocadorListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
-import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.services.serviceImp.LocadorServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,13 +44,13 @@ public class LocadorController {
     }
 
 //    // UPDATE
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<Locador> atualizar(@RequestBody Locador locador, @PathVariable Integer id){
-//        Locador atualizarLocador = locadorService.atualizar(locador, id);
-//
-//        return ResponseEntity.ok(atualizarLocador);
-//
-//    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<PatchLocadorResponse> atualizar(@RequestBody PatchLocadorRequest patchLocadorRequest, @PathVariable Integer id){
+        PatchLocadorResponse atualizarLocador = locadorService.atualizar(patchLocadorRequest, id);
+
+        return ResponseEntity.ok(atualizarLocador);
+
+    }
 
     // DELETE
     @DeleteMapping("/{id}")

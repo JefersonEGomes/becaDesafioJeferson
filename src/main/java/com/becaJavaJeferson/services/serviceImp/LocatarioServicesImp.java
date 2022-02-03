@@ -1,8 +1,10 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocatarioRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocatarioListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.repositories.LocatarioRepository;
@@ -42,7 +44,7 @@ public class LocatarioServicesImp  implements LocatarioService{
     }
 
     //READ
-
+    @Override
     public List<GetLocatarioListResponse> listar(){
         List<Locatario> listaLocatarios = locatarioRepository.findAll();
         List<GetLocatarioListResponse> getLocatarioListar = new ArrayList<>();
@@ -71,18 +73,22 @@ public class LocatarioServicesImp  implements LocatarioService{
     }
 
     //UPDATE
-//
-//    public Locatario atualizar(Locatario locatario, Integer id){
-//        Locatario locatarioObtido = this.obter(id);
-//        locatarioObtido.setNome( locatario.getNome());
-//        locatarioObtido.setCpf( locatario.getCpf());
-//        locatarioObtido.setIdade( locatario.getIdade());
-//        locatarioObtido.setTelefone( locatario.getTelefone());
-//
-//
-//        locatarioRepository.save(locatarioObtido);
-//        return locatarioObtido;
-//    }
+    @Override
+    public PatchLocatarioResponse atualizar(PatchLocatarioRequest patchLocatarioRequest, Integer id){
+
+        Locatario locatarioObtido = locatarioRepository.findById(id).get();
+        locatarioObtido.setNome( patchLocatarioRequest.getNome());
+        locatarioObtido.setCpf( patchLocatarioRequest.getCpf());
+        locatarioObtido.setIdade( patchLocatarioRequest.getIdade());
+        locatarioObtido.setTelefone( patchLocatarioRequest.getTelefone());
+
+        locatarioRepository.save(locatarioObtido);
+
+        PatchLocatarioResponse patchLocatarioResponse = new PatchLocatarioResponse();
+        patchLocatarioResponse.setMensagem("Locatário "+locatarioObtido.getNome()+" atualizado com sucesso");
+
+        return patchLocatarioResponse;
+    }
 
     //DELETE
 

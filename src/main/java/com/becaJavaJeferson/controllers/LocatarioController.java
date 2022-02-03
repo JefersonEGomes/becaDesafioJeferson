@@ -1,10 +1,11 @@
 package com.becaJavaJeferson.controllers;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocatarioRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocatarioListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
-import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.services.serviceImp.LocatarioServicesImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +44,12 @@ public class LocatarioController {
     }
 
     //UPDATE
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<Locatario> atualizar(@RequestBody Locatario locatario, @PathVariable Integer id){
-//        Locatario atualizarLocatario = locatarioService.atualizar(locatario, id);
-//
-//        return ResponseEntity.ok(atualizarLocatario);
-//    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<PatchLocatarioResponse> atualizar(@RequestBody PatchLocatarioRequest patchLocatarioRequest, @PathVariable Integer id){
+        PatchLocatarioResponse atualizarLocatario = locatarioService.atualizar(patchLocatarioRequest, id);
+
+        return ResponseEntity.ok(atualizarLocatario);
+    }
 
     //DELETE
     @DeleteMapping("/{id}")

@@ -1,6 +1,7 @@
 package com.becaJavaJeferson.controllers;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.services.serviceImp.LocatarioServicesImp;
@@ -34,19 +35,19 @@ public class LocatarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Locatario> obter(@PathVariable Integer id){
-        Locatario locatarioObtido = locatarioService.obter(id);
+    public ResponseEntity<GetLocatarioResponse> obter(@PathVariable Integer id){
+        GetLocatarioResponse getLocatarioResponse = locatarioService.obter(id);
 
-        return ResponseEntity.ok(locatarioObtido);
+        return ResponseEntity.ok(getLocatarioResponse);
     }
 
     //UPDATE
-    @PatchMapping("/{id}")
-    public ResponseEntity<Locatario> atualizar(@RequestBody Locatario locatario, @PathVariable Integer id){
-        Locatario atualizarLocatario = locatarioService.atualizar(locatario, id);
-
-        return ResponseEntity.ok(atualizarLocatario);
-    }
+//    @PatchMapping("/{id}")
+//    public ResponseEntity<Locatario> atualizar(@RequestBody Locatario locatario, @PathVariable Integer id){
+//        Locatario atualizarLocatario = locatarioService.atualizar(locatario, id);
+//
+//        return ResponseEntity.ok(atualizarLocatario);
+//    }
 
     //DELETE
     @DeleteMapping("/{id}")

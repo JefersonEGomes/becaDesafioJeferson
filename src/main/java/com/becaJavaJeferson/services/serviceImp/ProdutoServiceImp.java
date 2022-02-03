@@ -1,6 +1,8 @@
 package com.becaJavaJeferson.services.serviceImp;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Produto;
@@ -24,13 +26,21 @@ public class ProdutoServiceImp implements ProdutoService {
     //CREATE
     @Override
     public PostProdutoResponse criar(PostProdutoRequest postProdutoRequest){
-        Locador locadorObtido = locadorService.obter(postProdutoRequest.getIdLocador());
+
+        GetLocadorResponse locadorObtido = locadorService.obter(postProdutoRequest.getIdLocador());
+
+        Locador locador = new Locador();
+        locador.setId(locadorObtido.getId());
+        locador.setNome(locadorObtido.getNome());
+        locador.setIdade(locadorObtido.getIdade());
+        locador.setCpf(locadorObtido.getCpf());
+        locador.setTelefone(locadorObtido.getTelefone());
 
         Produto produto = new Produto();
         produto.setNome(postProdutoRequest.getNome());
         produto.setPreco(postProdutoRequest.getPreco());
         produto.setCategoria(postProdutoRequest.getCategoria());
-        produto.setLocador(locadorObtido);
+        produto.setLocador(locador);
 
         if( produto.getNome().length() <= 3){
             throw new RuntimeException("O nome do produto não pode ter menos de 4 caracteres");
@@ -60,36 +70,51 @@ public class ProdutoServiceImp implements ProdutoService {
     }
 
     @Override
-    public Produto obter(Integer id){
+    public GetProdutoResponse obter(Integer id){
         Produto produto = produtoRepository.findById(id).get();
+
+        GetLocadorResponse getLocadorResponse = new GetLocadorResponse();
+        getLocadorResponse.setId(produto.getLocador().getId());
+        getLocadorResponse.setNome(produto.getLocador().getNome());
+        getLocadorResponse.setIdade(produto.getLocador().getIdade());
+        getLocadorResponse.setTelefone(produto.getLocador().getTelefone());
+        getLocadorResponse.setCpf(produto.getLocador().getCpf());
+
+
+        GetProdutoResponse getProdutoResponse = new GetProdutoResponse();
+        getProdutoResponse.setId(produto.getId());
+        getProdutoResponse.setNome(produto.getNome());
+        getProdutoResponse.setCategoria(produto.getCategoria());
+        getProdutoResponse.setPreco(produto.getPreco());
+        getProdutoResponse.setGetLocadorResponse(getLocadorResponse);
 
         if(produto == null){
             throw new RuntimeException("O id do produto não foi encontrado");
         }
 
-        return produto;
+        return getProdutoResponse;
     }
 
     // UPDATE
-    @Override
-    public Produto atualizar(Produto produto, Integer id){
-        Produto produtoObtido = this.obter(id);
-        produtoObtido.setNome( produto.getNome() );
-        produtoObtido.setPreco( produto.getPreco() );
-        produtoObtido.setCategoria( produto.getCategoria() );
-        produtoObtido.setLocador( produto.getLocador() );
-
-        if( produto.getNome().length() <= 3){
-            throw new RuntimeException("O nome do Produto não pode ter menos de 4 caracteres");
-        }
-
-        if(produto.getPreco().longValue() <= 0){
-            throw new RuntimeException("Por favor digite um preço acima de 0");
-        }
-
-        produtoRepository.save(produtoObtido);
-        return produtoObtido;
-    }
+//    @Override
+//    public Produto atualizar(Produto produto, Integer id){
+//        Produto produtoObtido = this.obter(id);
+//        produtoObtido.setNome( produto.getNome() );
+//        produtoObtido.setPreco( produto.getPreco() );
+//        produtoObtido.setCategoria( produto.getCategoria() );
+//        produtoObtido.setLocador( produto.getLocador() );
+//
+//        if( produto.getNome().length() <= 3){
+//            throw new RuntimeException("O nome do Produto não pode ter menos de 4 caracteres");
+//        }
+//
+//        if(produto.getPreco().longValue() <= 0){
+//            throw new RuntimeException("Por favor digite um preço acima de 0");
+//        }
+//
+//        produtoRepository.save(produtoObtido);
+//        return produtoObtido;
+//    }
 
     // DELETE
     @Override

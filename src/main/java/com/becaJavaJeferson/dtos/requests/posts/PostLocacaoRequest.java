@@ -9,6 +9,7 @@ public class PostLocacaoRequest {
     private Integer idLocatario;
     private Integer idProduto;
 
+
     public LocalDate getDataAluguel() {
         return dataAluguel;
     }

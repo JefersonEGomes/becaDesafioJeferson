@@ -1,6 +1,7 @@
 package com.becaJavaJeferson.controllers;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.services.serviceImp.ProdutoServiceImp;
@@ -36,19 +37,19 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> obter(@PathVariable Integer id){
-        Produto produtoObtido = produtoService.obter(id);
+    public ResponseEntity<GetProdutoResponse> obter(@PathVariable Integer id){
+        GetProdutoResponse getProdutoResponse = produtoService.obter(id);
 
-        return ResponseEntity.ok(produtoObtido);
+        return ResponseEntity.ok(getProdutoResponse);
     }
 
     // UPDATE
-    @PatchMapping("/{id}")
-    public ResponseEntity<Produto> atualizar(@RequestBody Produto produto, @PathVariable Integer id){
-        Produto produtoAtualizado = produtoService.atualizar(produto, id);
-
-        return ResponseEntity.ok(produtoAtualizado);
-    }
+//    @PatchMapping("/{id}")
+//    public ResponseEntity<Produto> atualizar(@RequestBody Produto produto, @PathVariable Integer id){
+//        Produto produtoAtualizado = produtoService.atualizar(produto, id);
+//
+//        return ResponseEntity.ok(produtoAtualizado);
+//    }
 
     // DELETE
     @DeleteMapping("/{id}")

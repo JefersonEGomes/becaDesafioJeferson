@@ -1,6 +1,7 @@
 package com.becaJavaJeferson.services.serviceImp;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostLocatarioRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.repositories.LocatarioRepository;
@@ -47,29 +48,36 @@ public class LocatarioServicesImp  implements LocatarioService{
     }
 
 
-    public Locatario obter(Integer id){
+    public GetLocatarioResponse obter(Integer id){
         Locatario locatario = locatarioRepository.findById(id).get();
 
         if(locatario == null){
             throw new RuntimeException("O id do locatario não foi encontrado");
         }
 
-        return locatario;
+        GetLocatarioResponse getLocatarioResponse = new GetLocatarioResponse();
+        getLocatarioResponse.setId(locatario.getId());
+        getLocatarioResponse.setNome(locatario.getNome());
+        getLocatarioResponse.setIdade(locatario.getIdade());
+        getLocatarioResponse.setTelefone(locatario.getTelefone());
+        getLocatarioResponse.setCpf(locatario.getCpf());
+
+        return getLocatarioResponse;
     }
 
     //UPDATE
-
-    public Locatario atualizar(Locatario locatario, Integer id){
-        Locatario locatarioObtido = this.obter(id);
-        locatarioObtido.setNome( locatario.getNome());
-        locatarioObtido.setCpf( locatario.getCpf());
-        locatarioObtido.setIdade( locatario.getIdade());
-        locatarioObtido.setTelefone( locatario.getTelefone());
-
-
-        locatarioRepository.save(locatarioObtido);
-        return locatarioObtido;
-    }
+//
+//    public Locatario atualizar(Locatario locatario, Integer id){
+//        Locatario locatarioObtido = this.obter(id);
+//        locatarioObtido.setNome( locatario.getNome());
+//        locatarioObtido.setCpf( locatario.getCpf());
+//        locatarioObtido.setIdade( locatario.getIdade());
+//        locatarioObtido.setTelefone( locatario.getTelefone());
+//
+//
+//        locatarioRepository.save(locatarioObtido);
+//        return locatarioObtido;
+//    }
 
     //DELETE
 

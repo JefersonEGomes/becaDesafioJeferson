@@ -1,6 +1,7 @@
 package com.becaJavaJeferson.services;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
 import com.becaJavaJeferson.model.Locador;
 
@@ -12,9 +13,9 @@ public interface LocadorService {
 
     List<Locador> listar();
 
-    Locador obter (Integer id);
+    GetLocadorResponse obter (Integer id);
 
-    Locador atualizar(Locador locador, Integer id);
+    //Locador atualizar(Locador locador, Integer id);
 
     void deletar(Integer id);
 }

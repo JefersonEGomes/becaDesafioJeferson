@@ -3,6 +3,7 @@ package com.becaJavaJeferson.services.serviceImp;
 import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetProdutoListResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.model.Produto;
@@ -12,6 +13,7 @@ import com.becaJavaJeferson.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,10 +64,13 @@ public class ProdutoServiceImp implements ProdutoService {
 
     // READ
     @Override
-    public List<Produto> listar(){
+    public List<GetProdutoListResponse> listar(){
         List<Produto> listaProdutos =  produtoRepository.findAll();
+        List<GetProdutoListResponse> getProdutoListar = new ArrayList<>();
 
-        return listaProdutos;
+        listaProdutos.stream().forEach(produto -> getProdutoListar.add(new GetProdutoListResponse(produto)));
+
+        return getProdutoListar;
 
     }
 
@@ -74,11 +79,7 @@ public class ProdutoServiceImp implements ProdutoService {
         Produto produto = produtoRepository.findById(id).get();
 
         GetLocadorResponse getLocadorResponse = new GetLocadorResponse();
-        getLocadorResponse.setId(produto.getLocador().getId());
-        getLocadorResponse.setNome(produto.getLocador().getNome());
-        getLocadorResponse.setIdade(produto.getLocador().getIdade());
-        getLocadorResponse.setTelefone(produto.getLocador().getTelefone());
-        getLocadorResponse.setCpf(produto.getLocador().getCpf());
+        getLocadorResponse(produto, getLocadorResponse);
 
 
         GetProdutoResponse getProdutoResponse = new GetProdutoResponse();
@@ -93,6 +94,14 @@ public class ProdutoServiceImp implements ProdutoService {
         }
 
         return getProdutoResponse;
+    }
+
+    private void getLocadorResponse(Produto produto, GetLocadorResponse getLocadorResponse) {
+        getLocadorResponse.setId(produto.getLocador().getId());
+        getLocadorResponse.setNome(produto.getLocador().getNome());
+        getLocadorResponse.setIdade(produto.getLocador().getIdade());
+        getLocadorResponse.setTelefone(produto.getLocador().getTelefone());
+        getLocadorResponse.setCpf(produto.getLocador().getCpf());
     }
 
     // UPDATE

@@ -2,6 +2,7 @@ package com.becaJavaJeferson.controllers;
 
 import com.becaJavaJeferson.dtos.requests.posts.PostProdutoRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetProdutoListResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.services.serviceImp.ProdutoServiceImp;
@@ -30,8 +31,9 @@ public class ProdutoController {
 
     // READ
     @GetMapping
-    public ResponseEntity<List<Produto>> listar(){
-        List<Produto> listaProdutos = produtoService.listar();
+    public ResponseEntity<List<GetProdutoListResponse>> listar(){
+        List<GetProdutoListResponse> listaProdutos = produtoService.listar();
+
         return ResponseEntity.ok(listaProdutos);
 
     }

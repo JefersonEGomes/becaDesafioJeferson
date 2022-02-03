@@ -5,6 +5,7 @@ import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocacaoListResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
 import com.becaJavaJeferson.model.Locacao;
 import com.becaJavaJeferson.model.Locador;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 // Retirar o ID
@@ -93,10 +95,13 @@ public class LocacaoServiceImp implements LocacaoService {
 
     //READ
     @Override
-    public List<Locacao> listar(){
+    public List<GetLocacaoListResponse> listar(){
         List<Locacao> listaLocacoes = locacaoRepository.findAll();
+        List<GetLocacaoListResponse> getLocacaoListar = new ArrayList<>();
 
-        return listaLocacoes;
+        listaLocacoes.stream().forEach(locacao -> getLocacaoListar.add(new GetLocacaoListResponse(locacao)));
+
+        return getLocacaoListar;
     }
 
 

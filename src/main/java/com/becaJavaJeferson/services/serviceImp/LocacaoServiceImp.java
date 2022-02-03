@@ -47,36 +47,21 @@ public class LocacaoServiceImp implements LocacaoService {
     public PostLocacaoResponse criar(PostLocacaoRequest postLocacaoRequest) {
         GetLocatarioResponse locatarioObtido = locatarioService.obter(postLocacaoRequest.getIdLocatario());
         Locatario locatario = new Locatario();
-        locatario.setId(locatarioObtido.getId());
-        locatario.setNome(locatarioObtido.getNome());
-        locatario.setIdade(locatarioObtido.getIdade());
-        locatario.setTelefone(locatarioObtido.getTelefone());
-        locatario.setCpf(locatarioObtido.getCpf());
+        locatarioObtidoMethod(locatarioObtido, locatario);
 
 
         GetLocadorResponse locadorObtido = locadorService.obter(postLocacaoRequest.getIdProduto());
         Locador locador = new Locador();
-        locador.setId(locadorObtido.getId());
-        locador.setNome(locadorObtido.getNome());
-        locador.setIdade(locadorObtido.getIdade());
-        locador.setTelefone(locadorObtido.getTelefone());
-        locador.setCpf(locadorObtido.getCpf());
+        locadorObtidoMethod(locadorObtido, locador);
 
 
         GetProdutoResponse produtoObtido = produtoService.obter(postLocacaoRequest.getIdProduto());
         Produto produto = new Produto();
-        produto.setId(produtoObtido.getId());
-        produto.setNome(produtoObtido.getNome());
-        produto.setCategoria(produtoObtido.getCategoria());
-        produto.setPreco(produtoObtido.getPreco());
-        produto.setLocador(locador);
+        produtoObtidoMethod(locador, produtoObtido, produto);
 
 
         Locacao locacao = new Locacao();
-        locacao.setDataDevolve(postLocacaoRequest.getDataDevolve());
-        locacao.setDataAluguel(postLocacaoRequest.getDataAluguel());
-        locacao.setLocatario(locatario);
-        locacao.setProduto(produto);
+        locacaoMethod(postLocacaoRequest, locatario, produto, locacao);
 
         if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
             throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
@@ -86,14 +71,18 @@ public class LocacaoServiceImp implements LocacaoService {
             throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
         }
 
+        locacaoRepository.save(locacao);
 
         PostLocacaoResponse postLocacaoResponse = new PostLocacaoResponse();
         postLocacaoResponse.setMensagem("Sr(a) "+locatarioObtido.getNome()+" sua locação do produto "+produtoObtido.getNome()+" foi realizada com sucesso. Lembre-se" +
                 " de devolver em "+locacao.getDataDevolve().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
-        Locacao locacaoSalva = locacaoRepository.save(locacao);
+
         return postLocacaoResponse;
     }
+
+
+
 
     //READ
     @Override
@@ -118,18 +107,10 @@ public class LocacaoServiceImp implements LocacaoService {
         getLocatarioResponse(locacao, getLocatarioResponse);
 
         GetProdutoResponse getProdutoResponse = new GetProdutoResponse();
-        getProdutoResponse.setId(locacao.getProduto().getId());
-        getProdutoResponse.setNome(locacao.getProduto().getNome());
-        getProdutoResponse.setCategoria(locacao.getProduto().getCategoria());
-        getProdutoResponse.setPreco(locacao.getProduto().getPreco());
-        getProdutoResponse.setGetLocadorResponse(getLocadorResponse);
+        getProdutoResponse(locacao, getLocadorResponse, getProdutoResponse);
 
         GetLocacaoResponse getLocacaoResponse = new GetLocacaoResponse();
-        getLocacaoResponse.setId(locacao.getId());
-        getLocacaoResponse.setDataAluguel(locacao.getDataAluguel());
-        getLocacaoResponse.setDataDevolve(locacao.getDataDevolve());
-        getLocacaoResponse.setGetLocatarioResponse(getLocatarioResponse);
-        getLocacaoResponse.setGetProdutoResponse(getProdutoResponse);
+        getLocacaoResponse(locacao, getLocatarioResponse, getProdutoResponse, getLocacaoResponse);
 
         if(locacao == null){
             throw new RuntimeException("O id da locação não foi encontrado");
@@ -138,6 +119,68 @@ public class LocacaoServiceImp implements LocacaoService {
         return getLocacaoResponse;
     }
 
+
+    //UPDATE
+    @Override
+    public PatchLocacaoResponse atualizar(PatchLocacaoRequest patchLocacaoRequest, Integer id){
+
+        Locacao locacaoObtida = locacaoRepository.findById(id).get();
+        locacaoObtida.setDataAluguel( patchLocacaoRequest.getDataAluguel());
+        locacaoObtida.setDataDevolve( patchLocacaoRequest.getDataDevolve());
+
+
+        if(locacaoObtida.getDataDevolve().isBefore(locacaoObtida.getDataAluguel())){
+            throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
+        }
+
+        locacaoRepository.save(locacaoObtida);
+
+        PatchLocacaoResponse patchLocacaoResponse = new PatchLocacaoResponse();
+        patchLocacaoResponse.setMensagem("Locação atualizada com sucesso");
+
+        return patchLocacaoResponse;
+    }
+
+    //Delete
+    @Override
+    public void deletar(Integer id){
+        locacaoRepository.deleteById(id);
+
+    }
+    // Create Methods
+    private void produtoObtidoMethod(Locador locador, GetProdutoResponse produtoObtido, Produto produto) {
+        produto.setId(produtoObtido.getId());
+        produto.setNome(produtoObtido.getNome());
+        produto.setCategoria(produtoObtido.getCategoria());
+        produto.setPreco(produtoObtido.getPreco());
+        produto.setLocador(locador);
+    }
+
+    private void locadorObtidoMethod(GetLocadorResponse locadorObtido, Locador locador) {
+        locador.setId(locadorObtido.getId());
+        locador.setNome(locadorObtido.getNome());
+        locador.setIdade(locadorObtido.getIdade());
+        locador.setTelefone(locadorObtido.getTelefone());
+        locador.setCpf(locadorObtido.getCpf());
+    }
+
+    private void locatarioObtidoMethod(GetLocatarioResponse locatarioObtido, Locatario locatario) {
+        locatario.setId(locatarioObtido.getId());
+        locatario.setNome(locatarioObtido.getNome());
+        locatario.setIdade(locatarioObtido.getIdade());
+        locatario.setTelefone(locatarioObtido.getTelefone());
+        locatario.setCpf(locatarioObtido.getCpf());
+    }
+
+    private void locacaoMethod(PostLocacaoRequest postLocacaoRequest, Locatario locatario, Produto produto, Locacao locacao) {
+        locacao.setDataDevolve(postLocacaoRequest.getDataDevolve());
+        locacao.setDataAluguel(postLocacaoRequest.getDataAluguel());
+        locacao.setLocatario(locatario);
+        locacao.setProduto(produto);
+    }
+
+
+    // Read Methods
     private void getLocatarioResponse(Locacao locacao, GetLocatarioResponse getLocatarioResponse) {
         getLocatarioResponse.setId(locacao.getLocatario().getId());
         getLocatarioResponse.setNome(locacao.getLocatario().getNome());
@@ -154,34 +197,20 @@ public class LocacaoServiceImp implements LocacaoService {
         getLocadorResponse.setCpf(locacao.getProduto().getLocador().getCpf());
     }
 
-    //UPDATE
-    @Override
-    public PatchLocacaoResponse atualizar(PatchLocacaoRequest patchLocacaoRequest, Integer id){
+    private void getLocacaoResponse(Locacao locacao, GetLocatarioResponse getLocatarioResponse, GetProdutoResponse getProdutoResponse, GetLocacaoResponse getLocacaoResponse) {
 
-        Locacao locacaoObtida = locacaoRepository.findById(id).get();
-        locacaoObtida.setDataAluguel( patchLocacaoRequest.getDataAluguel());
-        locacaoObtida.setDataDevolve( patchLocacaoRequest.getDataDevolve());
-
-//        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
-//            throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
-//        }
-//
-//        if(locacao.getDataAluguel().isBefore(locacao.getDataDevolve())){
-//            throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
-//        }
-
-        locacaoRepository.save(locacaoObtida);
-
-        PatchLocacaoResponse patchLocacaoResponse = new PatchLocacaoResponse();
-        patchLocacaoResponse.setMensagem("Locação atualizada com sucesso");
-
-        return patchLocacaoResponse;
+        getLocacaoResponse.setDataAluguel(locacao.getDataAluguel());
+        getLocacaoResponse.setDataDevolve(locacao.getDataDevolve());
+        getLocacaoResponse.setLocatario(getLocatarioResponse);
+        getLocacaoResponse.setProduto(getProdutoResponse);
     }
 
-    //Delete
-    @Override
-    public void deletar(Integer id){
-        locacaoRepository.deleteById(id);
-
+    private void getProdutoResponse(Locacao locacao, GetLocadorResponse getLocadorResponse, GetProdutoResponse getProdutoResponse) {
+        getProdutoResponse.setId(locacao.getProduto().getId());
+        getProdutoResponse.setNome(locacao.getProduto().getNome());
+        getProdutoResponse.setCategoria(locacao.getProduto().getCategoria());
+        getProdutoResponse.setPreco(locacao.getProduto().getPreco());
+        getProdutoResponse.setLocador(getLocadorResponse);
     }
+
 }

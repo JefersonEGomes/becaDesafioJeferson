@@ -4,20 +4,29 @@ import java.time.LocalDate;
 
 public class GetLocacaoResponse {
 
-    private Integer id;
+
     private LocalDate dataAluguel;
     private LocalDate dataDevolve;
-    private GetLocatarioResponse getLocatarioResponse;
-    private GetProdutoResponse getProdutoResponse;
+    private GetLocatarioResponse locatario;
 
-
-    public Integer getId() {
-        return id;
+    public GetLocatarioResponse getLocatario() {
+        return locatario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLocatario(GetLocatarioResponse locatario) {
+        this.locatario = locatario;
     }
+
+    public GetProdutoResponse getProduto() {
+        return produto;
+    }
+
+    public void setProduto(GetProdutoResponse produto) {
+        this.produto = produto;
+    }
+
+    private GetProdutoResponse produto;
+
 
     public LocalDate getDataAluguel() {
         return dataAluguel;
@@ -35,19 +44,5 @@ public class GetLocacaoResponse {
         this.dataDevolve = dataDevolve;
     }
 
-    public GetLocatarioResponse getGetLocatarioResponse() {
-        return getLocatarioResponse;
-    }
 
-    public void setGetLocatarioResponse(GetLocatarioResponse getLocatarioResponse) {
-        this.getLocatarioResponse = getLocatarioResponse;
-    }
-
-    public GetProdutoResponse getGetProdutoResponse() {
-        return getProdutoResponse;
-    }
-
-    public void setGetProdutoResponse(GetProdutoResponse getProdutoResponse) {
-        this.getProdutoResponse = getProdutoResponse;
-    }
 }

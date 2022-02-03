@@ -99,7 +99,7 @@ public class ProdutoServiceImp implements ProdutoService {
         getProdutoResponse.setNome(produto.getNome());
         getProdutoResponse.setCategoria(produto.getCategoria());
         getProdutoResponse.setPreco(produto.getPreco());
-        getProdutoResponse.setGetLocadorResponse(getLocadorResponse);
+        getProdutoResponse.setLocador(getLocadorResponse);
     }
 
     private void getLocadorResponse(Produto produto, GetLocadorResponse getLocadorResponse) {

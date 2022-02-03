@@ -5,15 +5,15 @@ public class GetProdutoResponse {
     private String nome;
     private String categoria;
     private Double preco;
-    private GetLocadorResponse getLocadorResponse;
+    private GetLocadorResponse locador;
 
 
-    public GetLocadorResponse getGetLocadorResponse() {
-        return getLocadorResponse;
+    public GetLocadorResponse getLocador() {
+        return locador;
     }
 
-    public void setGetLocadorResponse(GetLocadorResponse getLocadorResponse) {
-        this.getLocadorResponse = getLocadorResponse;
+    public void setLocador(GetLocadorResponse locador) {
+        this.locador = locador;
     }
 
     public Integer getId() {

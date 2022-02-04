@@ -78,10 +78,7 @@ public class LocadorServiceImp implements LocadorService {
     public PatchLocadorResponse atualizar(PatchLocadorRequest patchLocadorRequest, Integer id){
 
         Locador locadorObtido = locadorRepository.findById(id).get();
-        locadorObtido.setNome( patchLocadorRequest.getNome());
-        locadorObtido.setCpf( patchLocadorRequest.getCpf());
-        locadorObtido.setIdade( patchLocadorRequest.getIdade());
-        locadorObtido.setTelefone( patchLocadorRequest.getTelefone());
+        locatarioObtidoMethod(patchLocadorRequest, locadorObtido);
 
         if( locadorObtido.getNome().length() <= 3){
             throw new RuntimeException("O nome do Locador não pode ter menos de 4 caracteres");
@@ -94,6 +91,13 @@ public class LocadorServiceImp implements LocadorService {
 
         return patchLocadorResponse;
 
+    }
+
+    private void locatarioObtidoMethod(PatchLocadorRequest patchLocadorRequest, Locador locadorObtido) {
+        locadorObtido.setNome( patchLocadorRequest.getNome());
+        locadorObtido.setCpf( patchLocadorRequest.getCpf());
+        locadorObtido.setIdade( patchLocadorRequest.getIdade());
+        locadorObtido.setTelefone( patchLocadorRequest.getTelefone());
     }
 
     // DELETE

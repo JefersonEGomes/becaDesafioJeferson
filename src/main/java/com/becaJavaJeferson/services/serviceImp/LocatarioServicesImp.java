@@ -69,6 +69,8 @@ public class LocatarioServicesImp  implements LocatarioService{
         getLocatarioResponse.setTelefone(locatario.getTelefone());
         getLocatarioResponse.setCpf(locatario.getCpf());
 
+
+
         return getLocatarioResponse;
     }
 

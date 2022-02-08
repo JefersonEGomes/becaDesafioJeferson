@@ -40,9 +40,9 @@ public class LocacaoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<GetLocacaoResponse> obter(@PathVariable Integer id){
-        GetLocacaoResponse locacaoObtida = locacaoService.obter(id);
+        GetLocacaoResponse getLocacaoResponse = locacaoService.obter(id);
 
-        return ResponseEntity.ok(locacaoObtida);
+        return ResponseEntity.ok(getLocacaoResponse);
     }
 
     //UPDATE

@@ -5,6 +5,7 @@ import lombok.*;
 
 @Data
 public class PostLocatarioResponse {
+    private Integer id;
     private String mensagem;
 
 }

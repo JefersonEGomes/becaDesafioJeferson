@@ -26,8 +26,8 @@ public class ProdutoServiceImp implements ProdutoService {
     private final MapperProdutoRequest mapperProdutoRequest;
     private final MapperProdutoResponse mapperProdutoResponse;
     private final MapperProdutoGetResponse mapperProdutoGetResponse;
-    private final MapperProdutoPathRequest mapperProdutoPathRequest;
-    private final MapperProdutoPathResponse mapperProdutoPathResponse;
+    private final MapperProdutoPatchRequest mapperProdutoPatchRequest;
+    private final MapperProdutoPatchResponse mapperProdutoPatchResponse;
     private final MapperProdutoListGetResponse mapperProdutoListGetResponse;
 
 
@@ -66,31 +66,16 @@ public class ProdutoServiceImp implements ProdutoService {
         return mapperProdutoGetResponse.toResponse(produto);
     }
 
-//    private void getProdutoResponse(Produto produto, GetLocadorResponse getLocadorResponse, GetProdutoResponse getProdutoResponse) {
-//        getProdutoResponse.setId(produto.getId());
-//        getProdutoResponse.setNome(produto.getNome());
-//        getProdutoResponse.setCategoria(produto.getCategoria());
-//        getProdutoResponse.setPreco(produto.getPreco());
-//        getProdutoResponse.setLocador(getLocadorResponse);
-//    }
-//
-//    private void getLocadorResponse(Produto produto, GetLocadorResponse getLocadorResponse) {
-//        getLocadorResponse.setId(produto.getLocador().getId());
-//        getLocadorResponse.setNome(produto.getLocador().getNome());
-//        getLocadorResponse.setIdade(produto.getLocador().getIdade());
-//        getLocadorResponse.setTelefone(produto.getLocador().getTelefone());
-//        getLocadorResponse.setCpf(produto.getLocador().getCpf());
-//    }
 
     // UPDATE
     @Override
     public PatchProdutoResponse atualizar(PatchProdutoRequest patchProdutoRequest, Integer id){
         Produto produtoObtido = produtoRepository.findById(id).get();
-        mapperProdutoPathRequest.atualizar(patchProdutoRequest, produtoObtido);
+        mapperProdutoPatchRequest.atualizar(patchProdutoRequest, produtoObtido);
 
         produtoRepository.save(produtoObtido);
 
-        PatchProdutoResponse patchProdutoResponse = mapperProdutoPathResponse.toResponse(produtoObtido);
+        PatchProdutoResponse patchProdutoResponse = mapperProdutoPatchResponse.toResponse(produtoObtido);
         patchProdutoResponse.setMensagem("Produto "+produtoObtido.getNome()+" atualizado com sucesso");
 
         return patchProdutoResponse;

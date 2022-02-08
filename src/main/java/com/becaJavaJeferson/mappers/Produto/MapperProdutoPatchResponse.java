@@ -5,6 +5,6 @@ import com.becaJavaJeferson.model.Produto;
 import org.mapstruct.Mapper;
 
 @Mapper
-public interface MapperProdutoPathResponse {
+public interface MapperProdutoPatchResponse {
     public PatchProdutoResponse toResponse(Produto produto);
 }

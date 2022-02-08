@@ -1,5 +1,7 @@
 package com.becaJavaJeferson.dtos.requests.posts;
 
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -17,11 +19,11 @@ public class PostLocacaoRequest {
     @Past(message = "A data de devolução não pode ser uma data inferior ao aluguel")
     private LocalDate dataDevolve;
 
-    @NotBlank(message = "o Id do Locatario não pode estar vazio")
-    private Integer idLocatario;
+//    @NotBlank(message = "o Id do Locatario não pode estar vazio")
+    private GetLocatarioResponse locatario;
 
-    @NotBlank(message = "o Id do Produto não pode estar vazio")
-    private Integer idProduto;
+//    @NotBlank(message = "o Id do Produto não pode estar vazio")
+    private GetProdutoResponse produto;
 
 
 }

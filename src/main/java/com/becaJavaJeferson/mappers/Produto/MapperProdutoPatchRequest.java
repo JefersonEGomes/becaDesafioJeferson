@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
 @Mapper
-public interface MapperProdutoPathRequest {
+public interface MapperProdutoPatchRequest {
     public void atualizar(PatchProdutoRequest patchProdutoRequest, @MappingTarget Produto produto);
 }

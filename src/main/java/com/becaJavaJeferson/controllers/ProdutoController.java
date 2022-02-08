@@ -7,22 +7,25 @@ import com.becaJavaJeferson.dtos.responses.gets.lists.GetProdutoListResponse;
 import com.becaJavaJeferson.dtos.responses.patch.PatchProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostProdutoResponse;
 import com.becaJavaJeferson.services.serviceImp.ProdutoServiceImp;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/produto")
+@RequiredArgsConstructor
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoServiceImp produtoService;
+
+    private final ProdutoServiceImp produtoService;
 
     //CREATE
     @PostMapping
-    public ResponseEntity<PostProdutoResponse> criar(@RequestBody PostProdutoRequest postProdutoRequest){
+    public ResponseEntity<PostProdutoResponse> criar(@RequestBody @Valid PostProdutoRequest postProdutoRequest){
 
         PostProdutoResponse postProdutoResponse = produtoService.criar(postProdutoRequest);
 
@@ -48,7 +51,7 @@ public class ProdutoController {
 
     // UPDATE
     @PatchMapping("/{id}")
-    public ResponseEntity<PatchProdutoResponse> atualizar(@RequestBody PatchProdutoRequest patchProdutoRequest, @PathVariable Integer id){
+    public ResponseEntity<PatchProdutoResponse> atualizar(@RequestBody @Valid PatchProdutoRequest patchProdutoRequest, @PathVariable Integer id){
         PatchProdutoResponse produtoAtualizado = produtoService.atualizar(patchProdutoRequest, id);
 
         return ResponseEntity.ok(produtoAtualizado);

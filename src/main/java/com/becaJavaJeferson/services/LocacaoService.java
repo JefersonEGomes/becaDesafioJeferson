@@ -6,7 +6,6 @@ import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocacaoListResponse;
 import com.becaJavaJeferson.dtos.responses.patch.PatchLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
-import com.becaJavaJeferson.model.Locacao;
 
 import java.util.List;
 

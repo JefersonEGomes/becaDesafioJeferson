@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class LocatarioController {
 
     //CREATE
     @PostMapping
-    public ResponseEntity<PostLocatarioResponse> criar(@RequestBody PostLocatarioRequest postLocatarioRequest){
+    public ResponseEntity<PostLocatarioResponse> criar(@RequestBody @Valid PostLocatarioRequest postLocatarioRequest){
         PostLocatarioResponse postLocatarioResponse = locatarioService.criar(postLocatarioRequest);
 
         return ResponseEntity.created(null).body(postLocatarioResponse);
@@ -45,7 +46,7 @@ public class LocatarioController {
 
     //UPDATE
     @PatchMapping("/{id}")
-    public ResponseEntity<PatchLocatarioResponse> atualizar(@RequestBody PatchLocatarioRequest patchLocatarioRequest, @PathVariable Integer id){
+    public ResponseEntity<PatchLocatarioResponse> atualizar(@RequestBody @Valid PatchLocatarioRequest patchLocatarioRequest, @PathVariable Integer id){
         PatchLocatarioResponse atualizarLocatario = locatarioService.atualizar(patchLocatarioRequest, id);
 
         return ResponseEntity.ok(atualizarLocatario);

@@ -6,38 +6,33 @@ import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocatarioListResponse;
 import com.becaJavaJeferson.dtos.responses.patch.PatchLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
+import com.becaJavaJeferson.mappers.MapperLocatarioRequest;
+import com.becaJavaJeferson.mappers.MapperLocatarioResponse;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.repositories.LocatarioRepository;
 import com.becaJavaJeferson.services.LocatarioService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class LocatarioServicesImp  implements LocatarioService{
 
-    @Autowired
-    private LocatarioRepository locatarioRepository;
+
+    private final LocatarioRepository locatarioRepository;
+    private final MapperLocatarioRequest mapperLocatarioRequest;
+    private final MapperLocatarioResponse mapperLocatarioResponse;
+
 
     //CREATE
-
     public PostLocatarioResponse criar(PostLocatarioRequest postLocatarioRequest){
-        Locatario locatario = new Locatario();
-        locatario.setNome(postLocatarioRequest.getNome());
-        locatario.setIdade(postLocatarioRequest.getIdade());
-        locatario.setCpf(postLocatarioRequest.getCpf());
-        locatario.setTelefone(postLocatarioRequest.getTelefone());
 
-        if( postLocatarioRequest.getNome().length() <= 3){
-            throw new RuntimeException("O nome do Locatário não pode ter menos de 4 caracteres");
-
-        }
-
+        Locatario locatario = mapperLocatarioRequest.toModel(postLocatarioRequest);
         Locatario locatarioSalvo = locatarioRepository.save(locatario);
-
-        PostLocatarioResponse postLocatarioResponse = new PostLocatarioResponse();
+        PostLocatarioResponse postLocatarioResponse = mapperLocatarioResponse.toResponse(locatario);
         postLocatarioResponse.setMensagem("Olá "+locatarioSalvo.getNome()+" seu registro de locatário foi criado com sucesso");
 
         return postLocatarioResponse;

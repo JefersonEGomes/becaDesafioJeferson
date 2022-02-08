@@ -18,6 +18,7 @@ import com.becaJavaJeferson.services.LocacaoService;
 import com.becaJavaJeferson.services.LocadorService;
 import com.becaJavaJeferson.services.LocatarioService;
 import com.becaJavaJeferson.services.ProdutoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,23 +29,22 @@ import java.util.List;
 // Retirar o ID
 
 @Service
+@RequiredArgsConstructor
 public class LocacaoServiceImp implements LocacaoService {
 
-    @Autowired
-    private LocacaoRepository locacaoRepository;
+    private final LocacaoRepository locacaoRepository;
 
-    @Autowired
-    private LocatarioService locatarioService;
+    private final LocatarioService locatarioService;
 
-    @Autowired
-    private LocadorService locadorService;
+    private final LocadorService locadorService;
 
-    @Autowired
-    private ProdutoService produtoService;
+    private final ProdutoService produtoService;
 
     //CREATE
     @Override
     public PostLocacaoResponse criar(PostLocacaoRequest postLocacaoRequest) {
+
+
         GetLocatarioResponse locatarioObtido = locatarioService.obter(postLocacaoRequest.getIdLocatario());
         Locatario locatario = new Locatario();
         locatarioObtidoMethod(locatarioObtido, locatario);

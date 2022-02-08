@@ -18,7 +18,7 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ## Modelo Conceitual
 
-![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/MeEmpresta.drawio.png)
+![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/MeEmpresta.png)
 =======
 
 
@@ -37,23 +37,23 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Implementação do OpenAPI
 
-![Swagger](D:\Workspace\becaDesafioJeferson\Swagg API.jpg)
+![Swagger](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Swagg%20API.jpg)
 
 ## Parte 3 do desafio
 
 ### Criação das Classes Services e Implementação das Interfaces
 
-![Services](C:\Users\jefer\OneDrive\Área de Trabalho\Services.png)
+![Services](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Services.png)
 
 ### Exemplo do código: 
 
 ### Service
 
-![Exemplo service](C:\Users\jefer\OneDrive\Área de Trabalho\Exemplo service.png)
+![Exemplo service](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Exemplo%20service.png)
 
 ### Interface Service
 
-![Exemplo Interface](C:\Users\jefer\OneDrive\Área de Trabalho\Exemplo Interface.png)
+![Exemplo Interface](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Exemplo%20Interface.png)
 
 
 
@@ -63,13 +63,13 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 
 
-![Repositories](C:\Users\jefer\OneDrive\Área de Trabalho\Repositories.png)
+![Repositories](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Repositories.png)
 
 ### Exemplo do Código
 
-![Exemplo repositorio](C:\Users\jefer\OneDrive\Área de Trabalho\Exemplo repositorio.png)
+![Exemplo repositorio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Exemplo%20repositorio.png)
 
-![bd console](C:\Users\jefer\OneDrive\Área de Trabalho\bd console.png)
+![bd console](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/bd%20console.png)
 
 
 
@@ -79,11 +79,11 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 
 
-![Dto path](C:\Users\jefer\OneDrive\Área de Trabalho\Dto path.png)
+![Dto path](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Dto%20path.png)
 
 ### Exemplo código DTO
 
-![Dto exemplo](C:\Users\jefer\OneDrive\Área de Trabalho\Dto exemplo.png)
+![Dto exemplo](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Dto%20exemplo.png)
 
 
 
@@ -91,10 +91,10 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Adição dos mappers e Lombok
 
-![Mappers path](C:\Users\jefer\OneDrive\Área de Trabalho\Mappers path.png)
+![Mappers path](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/Mappers%20path.png)
 
 ### Exemplo código Mappers e Lombok
 
-**Lombok (@Data)**![lombok](C:\Users\jefer\OneDrive\Área de Trabalho\lombok.png)
+**Lombok (@Data)**![lombok](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/lombok.png)
 
-**Mapper**![mapper exemplo](C:\Users\jefer\OneDrive\Área de Trabalho\mapper exemplo.png)
+**Mapper**![mapper exemplo](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/mapper%20exemplo.png)

@@ -18,7 +18,7 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ## Modelo Conceitual
 
-![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio4alt/MeEmpresta.png)
+![MeEmpresta.drawio](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/develop/MeEmpresta.drawio.png)
 =======
 
 
@@ -37,5 +37,64 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Implementação do OpenAPI
 
-![Swagger](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio4alt/Swagg%20API.jpg)
+![Swagger](D:\Workspace\becaDesafioJeferson\Swagg API.jpg)
 
+## Parte 3 do desafio
+
+### Criação das Classes Services e Implementação das Interfaces
+
+![Services](C:\Users\jefer\OneDrive\Área de Trabalho\Services.png)
+
+### Exemplo do código: 
+
+### Service
+
+![Exemplo service](C:\Users\jefer\OneDrive\Área de Trabalho\Exemplo service.png)
+
+### Interface Service
+
+![Exemplo Interface](C:\Users\jefer\OneDrive\Área de Trabalho\Exemplo Interface.png)
+
+
+
+## Parte 4 do desafio
+
+### Criando as classes repositories
+
+
+
+![Repositories](C:\Users\jefer\OneDrive\Área de Trabalho\Repositories.png)
+
+### Exemplo do Código
+
+![Exemplo repositorio](C:\Users\jefer\OneDrive\Área de Trabalho\Exemplo repositorio.png)
+
+![bd console](C:\Users\jefer\OneDrive\Área de Trabalho\bd console.png)
+
+
+
+## Parte 5 do desafio
+
+### Implementação da arquitetura DTO
+
+
+
+![Dto path](C:\Users\jefer\OneDrive\Área de Trabalho\Dto path.png)
+
+### Exemplo código DTO
+
+![Dto exemplo](C:\Users\jefer\OneDrive\Área de Trabalho\Dto exemplo.png)
+
+
+
+## Parte 6 do desafio
+
+### Adição dos mappers e Lombok
+
+![Mappers path](C:\Users\jefer\OneDrive\Área de Trabalho\Mappers path.png)
+
+### Exemplo código Mappers e Lombok
+
+**Lombok (@Data)**![lombok](C:\Users\jefer\OneDrive\Área de Trabalho\lombok.png)
+
+**Mapper**![mapper exemplo](C:\Users\jefer\OneDrive\Área de Trabalho\mapper exemplo.png)

@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface MapperLocadorResponse {
-    public PostLocadorResponse toResponse(Locador locador);
+    public PostLocadorResponse toResponse(Locador locdaor);
 }

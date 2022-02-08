@@ -43,10 +43,6 @@ public class LocadorServiceImp implements LocadorService {
     public List<GetLocadorListResponse> listar(){
         List<Locador> listaLocadores = locadorRepository.findAll();
 
-        //List<GetLocadorListResponse> getLocadorListar = new ArrayList<>();
-
-        //listaLocadores.stream().forEach(locador -> getLocadorListar.add(new GetLocadorListResponse(locador)));
-
         return listaLocadores.stream().map(mapperLocadorListGetResponse::toResponse).collect(Collectors.toList());
 
     }
@@ -69,8 +65,6 @@ public class LocadorServiceImp implements LocadorService {
     public PatchLocadorResponse atualizar(PatchLocadorRequest patchLocadorRequest, Integer id){
         Locador locadorObtido = locadorRepository.findById(id).get();
         mapperLocadorPathRequest.atualizar(patchLocadorRequest, locadorObtido);
-        //locatarioObtidoMethod(patchLocadorRequest, locadorObtido);
-
         locadorRepository.save(locadorObtido);
 
         PatchLocadorResponse patchLocadorResponse = mapperLocadorPatchResponse.toResponse(locadorObtido);

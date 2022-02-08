@@ -6,8 +6,7 @@ import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocatarioListResponse;
 import com.becaJavaJeferson.dtos.responses.patch.PatchLocatarioResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocatarioResponse;
-import com.becaJavaJeferson.mappers.MapperLocatarioRequest;
-import com.becaJavaJeferson.mappers.MapperLocatarioResponse;
+import com.becaJavaJeferson.mappers.Locatario.*;
 import com.becaJavaJeferson.model.Locatario;
 import com.becaJavaJeferson.repositories.LocatarioRepository;
 import com.becaJavaJeferson.services.LocatarioService;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +25,10 @@ public class LocatarioServicesImp  implements LocatarioService{
     private final LocatarioRepository locatarioRepository;
     private final MapperLocatarioRequest mapperLocatarioRequest;
     private final MapperLocatarioResponse mapperLocatarioResponse;
+    private final MapperLocatarioPatchRequest mapperLocatarioPatchRequest;
+    private final MapperLocatarioPatchResponse mapperLocatarioPatchResponse;
+    private final MapperLocatarioGetResponse mapperLocatarioGetResponse;
+    private final MapperLocatarioListGetResponse mapperLocatarioListGetResponse;
 
 
     //CREATE
@@ -42,11 +46,8 @@ public class LocatarioServicesImp  implements LocatarioService{
     @Override
     public List<GetLocatarioListResponse> listar(){
         List<Locatario> listaLocatarios = locatarioRepository.findAll();
-        List<GetLocatarioListResponse> getLocatarioListar = new ArrayList<>();
 
-        listaLocatarios.stream().forEach(locatario -> getLocatarioListar.add(new GetLocatarioListResponse(locatario)));
-
-        return getLocatarioListar;
+        return listaLocatarios.stream().map(mapperLocatarioListGetResponse::toResponse).collect(Collectors.toList());
     }
 
 
@@ -57,31 +58,17 @@ public class LocatarioServicesImp  implements LocatarioService{
             throw new RuntimeException("O id do locatario não foi encontrado");
         }
 
-        GetLocatarioResponse getLocatarioResponse = new GetLocatarioResponse();
-        getLocatarioResponse.setId(locatario.getId());
-        getLocatarioResponse.setNome(locatario.getNome());
-        getLocatarioResponse.setIdade(locatario.getIdade());
-        getLocatarioResponse.setTelefone(locatario.getTelefone());
-        getLocatarioResponse.setCpf(locatario.getCpf());
-
-
-
-        return getLocatarioResponse;
+        return mapperLocatarioGetResponse.toResponse(locatario);
     }
 
     //UPDATE
     @Override
     public PatchLocatarioResponse atualizar(PatchLocatarioRequest patchLocatarioRequest, Integer id){
-
         Locatario locatarioObtido = locatarioRepository.findById(id).get();
-        locatarioObtido.setNome( patchLocatarioRequest.getNome());
-        locatarioObtido.setCpf( patchLocatarioRequest.getCpf());
-        locatarioObtido.setIdade( patchLocatarioRequest.getIdade());
-        locatarioObtido.setTelefone( patchLocatarioRequest.getTelefone());
-
+        mapperLocatarioPatchRequest.atualizar(patchLocatarioRequest, locatarioObtido);
         locatarioRepository.save(locatarioObtido);
 
-        PatchLocatarioResponse patchLocatarioResponse = new PatchLocatarioResponse();
+        PatchLocatarioResponse patchLocatarioResponse = mapperLocatarioPatchResponse.toResponse(locatarioObtido);
         patchLocatarioResponse.setMensagem("Locatário "+locatarioObtido.getNome()+" atualizado com sucesso");
 
         return patchLocatarioResponse;

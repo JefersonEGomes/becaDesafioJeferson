@@ -1,6 +1,6 @@
 package com.becaJavaJeferson.dtos.responses.posts;
 
-import lombok.*;
+import lombok.Data;
 
 
 @Data

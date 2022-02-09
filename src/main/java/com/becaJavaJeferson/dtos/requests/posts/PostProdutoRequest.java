@@ -18,14 +18,8 @@ public class PostProdutoRequest {
     @Size(min = 3, message = "O nome da categoria não pode ter menos que 4 caracteres")
     private String categoria;
 
-//    @NotBlank(message = "O preço está vazio, por favor digite um preço válido")
-//    @Negative(message = "O valor do preço não pode ser negativo")
     private Double preco;
 
-//    @NotBlank(message = "O Id está vazio, por favor digite um Id válido")
-//    @Negative(message = "O valor do preço não pode ser negativo")
     private PostLocadorRequest locador;
-    // ATENÇÃO
-
 
 }

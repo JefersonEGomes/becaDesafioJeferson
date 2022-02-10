@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.UnexpectedTypeException;
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class ExceptionHandle {
@@ -27,7 +28,7 @@ public class ExceptionHandle {
     }
 
     @ExceptionHandler(UnexpectedTypeException.class)
-    public ResponseEntity<DefaultException> handle(UnexpectedTypeException tamanhoNaoValido) {
+    public ResponseEntity<DefaultException> handle(UnexpectedTypeException campoVazio) {
         DefaultException defaultException = new DefaultException();
         defaultException.setMensagem("Os campos obrigatórios estão vazios");
         defaultException.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
@@ -38,7 +39,7 @@ public class ExceptionHandle {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<DefaultException> handle(MethodArgumentNotValidException tamanhoNaoValido) {
+    public ResponseEntity<DefaultException> handle(MethodArgumentNotValidException campoInvalido) {
         DefaultException defaultException = new DefaultException();
         defaultException.setMensagem("Há campos inválidos, por favor revise");
         defaultException.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
@@ -49,7 +50,7 @@ public class ExceptionHandle {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<DefaultException> handle(HttpMessageNotReadableException tamanhoNaoValido) {
+    public ResponseEntity<DefaultException> handle(HttpMessageNotReadableException dataInvalida) {
         DefaultException defaultException = new DefaultException();
         defaultException.setMensagem("Data inválida favor verificar novamente");
         defaultException.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
@@ -60,7 +61,7 @@ public class ExceptionHandle {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<DefaultException> handle(DataIntegrityViolationException tamanhoNaoValido) {
+    public ResponseEntity<DefaultException> handle(DataIntegrityViolationException dadoInvalido) {
         DefaultException defaultException = new DefaultException();
         defaultException.setMensagem("Você não pode apagar um dado que está sendo utilizado");
         defaultException.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
@@ -70,5 +71,15 @@ public class ExceptionHandle {
 
     }
 
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<DefaultException> run(NoSuchElementException dadoInvalido) {
+        DefaultException defaultException = new DefaultException();
+        defaultException.setMensagem("O id não foi encontrado");
+        defaultException.setStatus(HttpStatus.NOT_FOUND.value());
+        defaultException.setDataAtual(LocalDateTime.now());
+
+        return ResponseEntity.status(defaultException.getStatus()).body(defaultException);
+
+    }
 
 }

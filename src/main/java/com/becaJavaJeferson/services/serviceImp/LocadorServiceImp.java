@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,11 +51,8 @@ public class LocadorServiceImp implements LocadorService {
     @Override
     public GetLocadorResponse obter(Integer id){
 
-        Locador locador = locadorRepository.findById(id).get();
+        Locador locador = locadorRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
-        if(locador == null){
-            throw new RuntimeException("O id do locador não foi encontrado");
-        }
 
 
         return mapperLocadorGetResponse.toResponse(locador);

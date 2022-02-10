@@ -1,7 +1,6 @@
 package com.becaJavaJeferson.dtos.responses.gets.lists;
 
-import com.becaJavaJeferson.model.Locador;
-import lombok.*;
+import lombok.Data;
 
 
 @Data

@@ -3,22 +3,13 @@ package com.becaJavaJeferson.services.serviceImp;
 import com.becaJavaJeferson.dtos.requests.patch.PatchLocacaoRequest;
 import com.becaJavaJeferson.dtos.requests.posts.PostLocacaoRequest;
 import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocacaoResponse;
-import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
-import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocatarioResponse;
-import com.becaJavaJeferson.dtos.responses.gets.ids.GetProdutoResponse;
 import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocacaoListResponse;
 import com.becaJavaJeferson.dtos.responses.patch.PatchLocacaoResponse;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
 import com.becaJavaJeferson.mappers.Locacao.*;
 import com.becaJavaJeferson.model.Locacao;
-import com.becaJavaJeferson.model.Locador;
-import com.becaJavaJeferson.model.Locatario;
-import com.becaJavaJeferson.model.Produto;
 import com.becaJavaJeferson.repositories.LocacaoRepository;
 import com.becaJavaJeferson.services.LocacaoService;
-import com.becaJavaJeferson.services.LocadorService;
-import com.becaJavaJeferson.services.LocatarioService;
-import com.becaJavaJeferson.services.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +22,6 @@ import java.util.stream.Collectors;
 public class LocacaoServiceImp implements LocacaoService {
 
     private final LocacaoRepository locacaoRepository;
-    private final LocatarioService locatarioService;
-    private final LocadorService locadorService;
-    private final ProdutoService produtoService;
     private final MapperLocacaoRequest mapperLocacaoRequest;
     private final MapperLocacaoResponse mapperLocacaoResponse;
     private final MapperLocacaoPatchRequest mapperLocacaoPatchRequest;

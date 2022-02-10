@@ -1,6 +1,6 @@
 package com.becaJavaJeferson.model;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +16,8 @@ public class Locador{
     private Integer id;
     private String nome;
     private Integer idade;
-    private Long cpf;
-    private Long telefone;
+    private String cpf;
+    private String telefone;
 
     public Locador() {
     }

@@ -2,10 +2,7 @@ package com.becaJavaJeferson.dtos.requests.posts;
 
 import lombok.Data;
 
-import javax.validation.constraints.Negative;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 public class PostLocatarioRequest {
@@ -16,11 +13,15 @@ public class PostLocatarioRequest {
     private String nome;
 
     @Positive
+    @Min(value = 18, message = "Você não pode ser menor de 18 anos")
     private Integer idade;
 
-    private Long cpf;
+    @NotBlank(message = "O seu cpf está vazio, por favor digite um nome válido")
+    @Size(min = 11,max= 11, message = "O seu nome não pode ter menos/mais que 11 caracteres")
+    private String cpf;
 
-    private Long telefone;
+    @NotBlank(message = "O seu telefone está vazio, por favor digite um nome válido")
+    private String telefone;
 
 
 

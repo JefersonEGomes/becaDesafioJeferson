@@ -16,15 +16,13 @@ public class Locatario{
         private Integer id;
         private String nome;
         private Integer idade;
-        private Long cpf;
-        private Long telefone;
+        private String cpf;
+        private String telefone;
 
         public Locatario() {
         }
 
-        /*protected boolean canEqual(final Object other) {
-                return other instanceof Locatario;
-        }*/
+
 
 }
 

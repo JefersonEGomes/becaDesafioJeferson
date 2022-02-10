@@ -7,7 +7,7 @@ public class GetLocatarioResponse {
     private Integer id;
     private String nome;
     private Integer idade;
-    private Long cpf;
-    private Long telefone;
+    private String cpf;
+    private String telefone;
 
 }

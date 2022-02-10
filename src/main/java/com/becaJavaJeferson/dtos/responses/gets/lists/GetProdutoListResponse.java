@@ -1,6 +1,5 @@
 package com.becaJavaJeferson.dtos.responses.gets.lists;
 
-import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
 import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponseCustom;
 import lombok.Data;
 

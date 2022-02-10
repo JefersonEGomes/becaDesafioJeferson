@@ -1,41 +1,28 @@
 package com.becaJavaJeferson.dtos.requests.patch;
 
+import lombok.Data;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
+@Data
 public class PatchLocatarioRequest {
 
+    @NotBlank(message = "O seu nome está vazio, por favor digite um nome válido")
+    @Size(min = 3, message = "O seu nome não pode ter menos que 4 caracteres")
     private String nome;
+
+    @Positive
+    @Min(value = 18, message = "Você não pode ser menor de 18 anos")
     private Integer idade;
-    private Long cpf;
-    private Long telefone;
 
-    public String getNome() {
-        return nome;
-    }
+    @NotBlank(message = "O Seu cpf está vazio, por favor digite um nome válido")
+    @Size(min = 11,max= 11, message = "O seu nome não pode ter menos/mais que 11 caracteres")
+    private String cpf;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    @NotBlank(message = "O Seu telefone está vazio, por favor digite um nome válido")
+    private String telefone;
 
-    public Integer getIdade() {
-        return idade;
-    }
-
-    public void setIdade(Integer idade) {
-        this.idade = idade;
-    }
-
-    public Long getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
-    }
-
-    public Long getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(Long telefone) {
-        this.telefone = telefone;
-    }
 }

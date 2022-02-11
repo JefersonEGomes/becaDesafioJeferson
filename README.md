@@ -98,3 +98,31 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 **Lombok (@Data)**![lombok](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/lombok.png)
 
 **Mapper**![mapper exemplo](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio6/pictures/mapper%20exemplo.png)
+
+
+
+## Parte 7 do desafio
+
+### Controle de Erros
+
+![Exceptions path](D:\Workspace\becaDesafioJeferson\pictures\Exceptions path.png)
+
+### Exemplo de tratamento de erros
+
+![Exemplo Exceptions](D:\Workspace\becaDesafioJeferson\pictures\Exemplo Exceptions.png)
+
+
+
+## Parte 8 do Desafio
+
+### Integração com Docker 
+
+​	![dockerCompose](D:\Workspace\becaDesafioJeferson\pictures\dockerCompose.png)
+
+### Tabelas SQL
+
+![DBeaverSql](D:\Workspace\becaDesafioJeferson\pictures\DBeaverSql.png)
+
+### Docker Rodando
+
+![DockerRun](D:\Workspace\becaDesafioJeferson\pictures\DockerRun.png)

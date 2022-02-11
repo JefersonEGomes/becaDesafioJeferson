@@ -23,12 +23,6 @@ public class Locacao {
 
     public Locacao() {
     }
-
-
-    /*protected boolean canEqual(final Object other) {
-        return other instanceof Locacao;
-    }*/
+    
 
 }
-
-

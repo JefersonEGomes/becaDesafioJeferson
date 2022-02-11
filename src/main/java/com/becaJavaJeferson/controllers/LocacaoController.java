@@ -27,6 +27,7 @@ public class LocacaoController {
     public ResponseEntity<PostLocacaoResponse> criar(@RequestBody @Valid PostLocacaoRequest postLocacaoRequest) {
         PostLocacaoResponse postLocacaoResponse = locacaoService.criar(postLocacaoRequest);
 
+
         return ResponseEntity.created(null).body(postLocacaoResponse);
     }
 

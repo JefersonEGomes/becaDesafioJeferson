@@ -21,8 +21,4 @@ public class Produto {
     }
 
 
-    /*protected boolean canEqual(final Object other) {
-        return other instanceof Produto;
-    }*/
-
 }

@@ -1,6 +1,6 @@
 package com.becaJavaJeferson.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +22,5 @@ public class Locador{
     public Locador() {
     }
 
-
-   /* protected boolean canEqual(final Object other) {
-        return other instanceof Locador;
-    }*/
 
 }

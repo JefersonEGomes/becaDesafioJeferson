@@ -105,11 +105,11 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Controle de Erros
 
-![Exceptions path](D:\Workspace\becaDesafioJeferson\pictures\Exceptions path.png)
+![Exceptions path](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio8/pictures/Exceptions%20path.png)
 
 ### Exemplo de tratamento de erros
 
-![Exemplo Exceptions](D:\Workspace\becaDesafioJeferson\pictures\Exemplo Exceptions.png)
+![Exemplo Exceptions](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio8/pictures/Exemplo%20Exceptions.png)
 
 
 
@@ -117,12 +117,12 @@ O projeto será desenvolvido em Java com base nas aulas do curso da Udemy  (Java
 
 ### Integração com Docker 
 
-​	![dockerCompose](D:\Workspace\becaDesafioJeferson\pictures\dockerCompose.png)
+​	![dockerCompose](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio8/pictures/dockerCompose.png)
 
 ### Tabelas SQL
 
-![DBeaverSql](D:\Workspace\becaDesafioJeferson\pictures\DBeaverSql.png)
+![DBeaverSql](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio8/pictures/DBeaverSql.png)
 
 ### Docker Rodando
 
-![DockerRun](D:\Workspace\becaDesafioJeferson\pictures\DockerRun.png)
+![DockerRun](https://github.com/JefersonEGomes/becaDesafioJeferson/blob/desafio8/pictures/DockerRun.png)

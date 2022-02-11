@@ -1,75 +1,87 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocacaoRequest;
+import com.becaJavaJeferson.dtos.requests.posts.PostLocacaoRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocacaoResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocacaoListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocacaoResponse;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocacaoResponse;
+import com.becaJavaJeferson.mappers.Locacao.*;
 import com.becaJavaJeferson.model.Locacao;
 import com.becaJavaJeferson.repositories.LocacaoRepository;
 import com.becaJavaJeferson.services.LocacaoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class LocacaoServiceImp implements LocacaoService {
 
-    @Autowired
-    private LocacaoRepository locacaoRepository;
+    private final LocacaoRepository locacaoRepository;
+    private final MapperLocacaoRequest mapperLocacaoRequest;
+    private final MapperLocacaoResponse mapperLocacaoResponse;
+    private final MapperLocacaoPatchRequest mapperLocacaoPatchRequest;
+    private final MapperLocacaoPatchResponse mapperLocacaoPatchResponse;
+    private final MapperLocacaoGetResponse mapperLocacaoGetResponse;
+    private final MapperLocacaoListGetResponse mapperLocacaoListGetResponse;
 
 
     //CREATE
     @Override
-    public Locacao criar(Locacao locacao) {
+    public PostLocacaoResponse criar(PostLocacaoRequest postLocacaoRequest) {
 
-//        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
-//            throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
-//        }
-//
-//        if(locacao.getDataDevolve().isBefore(locacao.getDataAluguel())){
-//            throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
-//        }
+        Locacao locacao = mapperLocacaoRequest.toModel(postLocacaoRequest);
+        locacaoRepository.save(locacao);
+        PostLocacaoResponse postLocacaoResponse = mapperLocacaoResponse.toResponse(locacao);
+        postLocacaoResponse.setMensagem("Sua locação foi realizada com sucesso. Lembre-se de devolver em "+locacao.getDataDevolve().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
-       return locacaoRepository.save(locacao);
+        return postLocacaoResponse;
 
     }
+
 
     //READ
     @Override
-    public List<Locacao> listar(){
+    public List<GetLocacaoListResponse> listar(){
         List<Locacao> listaLocacoes = locacaoRepository.findAll();
 
-        return listaLocacoes;
+        return listaLocacoes.stream().map(mapperLocacaoListGetResponse::toResponse).collect(Collectors.toList());
     }
 
 
     @Override
-    public Locacao obter(Integer id){
+    public GetLocacaoResponse obter(Integer id){
         Locacao locacao = locacaoRepository.findById(id).get();
 
         if(locacao == null){
             throw new RuntimeException("O id da locação não foi encontrado");
         }
 
-        return locacao;
+        return mapperLocacaoGetResponse.toResponse(locacao);
     }
+
 
     //UPDATE
     @Override
-    public Locacao atualizar(Locacao locacao,Integer id){
-        Locacao locacaoObtida = this.obter(id);
-        locacaoObtida.setDataAluguel( locacao.getDataAluguel());
-        locacaoObtida.setDataDevolve( locacao.getDataDevolve());
-        locacaoObtida.setProduto( locacao.getProduto());
-        locacaoObtida.setLocatario( locacao.getLocatario());
+    public PatchLocacaoResponse atualizar(PatchLocacaoRequest patchLocacaoRequest, Integer id){
+        Locacao locacaoObtida = locacaoRepository.findById(id).get();
+        mapperLocacaoPatchRequest.atualizar(patchLocacaoRequest, locacaoObtida);
 
-        if (locacao.getProduto().getLocador().getCpf().equals(locacao.getLocatario().getCpf())){
-            throw new RuntimeException(("Você não pode realizar uma locação com você mesmo"));
-        }
 
-        if(locacao.getDataAluguel().isBefore(locacao.getDataDevolve())){
+        if(locacaoObtida.getDataDevolve().isBefore(locacaoObtida.getDataAluguel())){
             throw new RuntimeException(("Você não pode devolver o produto em uma data antes do aluguel"));
         }
 
         locacaoRepository.save(locacaoObtida);
-        return locacaoObtida;
+
+        PatchLocacaoResponse patchLocacaoResponse = mapperLocacaoPatchResponse.toResponse(locacaoObtida);
+        patchLocacaoResponse.setMensagem("Locação atualizada com sucesso");
+
+        return patchLocacaoResponse;
     }
 
     //Delete
@@ -78,4 +90,5 @@ public class LocacaoServiceImp implements LocacaoService {
         locacaoRepository.deleteById(id);
 
     }
+
 }

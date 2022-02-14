@@ -1,67 +1,82 @@
 package com.becaJavaJeferson.services.serviceImp;
 
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocadorRequest;
+import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocadorListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocadorResponse;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
+import com.becaJavaJeferson.mappers.Locador.*;
 import com.becaJavaJeferson.model.Locador;
 import com.becaJavaJeferson.repositories.LocadorRepository;
 import com.becaJavaJeferson.services.LocadorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class LocadorServiceImp implements LocadorService {
 
-    @Autowired
-    private LocadorRepository locadorRepository;
+    private final LocadorRepository locadorRepository;
+    private final MapperLocadorRequest mapperLocadorRequest;
+    private final MapperLocadorResponse mapperLocadorResponse;
+    private final MapperLocadorPathRequest mapperLocadorPathRequest;
+    private final MapperLocadorPatchResponse mapperLocadorPatchResponse;
+    private final MapperLocadorListGetResponse mapperLocadorListGetResponse;
+    private  final MapperLocadorGetResponse mapperLocadorGetResponse;
 
     // CREATE
-    @Override
-    public Locador criar(Locador locador){
+    public PostLocadorResponse criar(PostLocadorRequest postLocadorRequest){
 
-
-        if( locador.getNome().length() <= 3){
-            throw new RuntimeException("O nome do Locador não pode ter menos de 4 caracteres");
-        }
-
-        Locador locadorSalvo = locadorRepository.save(locador);
-        return locadorSalvo;
+        Locador locador = mapperLocadorRequest.toModel(postLocadorRequest);
+        locadorRepository.save(locador);
+        PostLocadorResponse postLocadorResponse = mapperLocadorResponse.toResponse(locador);
+        postLocadorResponse.setMensagem("Olá "+locador.getNome()+" seu registro de locador foi criado com sucesso");
+        return postLocadorResponse;
     }
 
     // READ
     @Override
-    public List<Locador> listar(){
+    public List<GetLocadorListResponse> listar(){
         List<Locador> listaLocadores = locadorRepository.findAll();
 
-        return listaLocadores;
+        return listaLocadores.stream().map(mapperLocadorListGetResponse::toResponse).collect(Collectors.toList());
+
     }
 
     @Override
-    public Locador obter(Integer id){
-        Locador locador = locadorRepository.findById(id).get();
+    public GetLocadorResponse obter(Integer id){
 
-        if(locador == null){
-            throw new RuntimeException("O id do locador não foi encontrado");
-        }
+        Locador locador = locadorRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
-        return locador;
+
+
+        return mapperLocadorGetResponse.toResponse(locador);
     }
 
     // UPDATE
     @Override
-    public Locador atualizar(Locador locador,Integer id){
-        Locador locadorObtido = this.obter(id);
-        locadorObtido.setNome( locador.getNome());
-        locadorObtido.setCpf( locador.getCpf());
-        locadorObtido.setIdade( locador.getIdade());
-        locadorObtido.setTelefone( locador.getTelefone());
-
-        if( locador.getNome().length() <= 3){
-            throw new RuntimeException("O nome do Locador não pode ter menos de 4 caracteres");
-        }
-
+    public PatchLocadorResponse atualizar(PatchLocadorRequest patchLocadorRequest, Integer id){
+        Locador locadorObtido = locadorRepository.findById(id).get();
+        mapperLocadorPathRequest.atualizar(patchLocadorRequest, locadorObtido);
         locadorRepository.save(locadorObtido);
-        return locadorObtido;
 
+        PatchLocadorResponse patchLocadorResponse = mapperLocadorPatchResponse.toResponse(locadorObtido);
+        patchLocadorResponse.setMensagem("Locador "+locadorObtido.getNome()+" atualizado com sucesso");
+
+        return patchLocadorResponse;
+
+    }
+
+    private void locatarioObtidoMethod(PatchLocadorRequest patchLocadorRequest, Locador locadorObtido) {
+        locadorObtido.setNome( patchLocadorRequest.getNome());
+        locadorObtido.setCpf( patchLocadorRequest.getCpf());
+        locadorObtido.setIdade( patchLocadorRequest.getIdade());
+        locadorObtido.setTelefone( patchLocadorRequest.getTelefone());
     }
 
     // DELETE

@@ -1,11 +1,17 @@
 package com.becaJavaJeferson.controllers;
 
-import com.becaJavaJeferson.model.Locador;
-import com.becaJavaJeferson.services.LocadorService;
+import com.becaJavaJeferson.dtos.requests.patch.PatchLocadorRequest;
+import com.becaJavaJeferson.dtos.requests.posts.PostLocadorRequest;
+import com.becaJavaJeferson.dtos.responses.gets.ids.GetLocadorResponse;
+import com.becaJavaJeferson.dtos.responses.gets.lists.GetLocadorListResponse;
+import com.becaJavaJeferson.dtos.responses.patch.PatchLocadorResponse;
+import com.becaJavaJeferson.dtos.responses.posts.PostLocadorResponse;
+import com.becaJavaJeferson.services.serviceImp.LocadorServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -13,36 +19,35 @@ import java.util.List;
 public class LocadorController {
 
     @Autowired
-    private LocadorService locadorService;
+    private LocadorServiceImp locadorService;
 
     // CREATE
     @PostMapping
-    public ResponseEntity<Locador> criar(@RequestBody Locador locador){
-        Locador criarLocador = locadorService.criar(locador);
+    public ResponseEntity<PostLocadorResponse> criar(@RequestBody @Valid PostLocadorRequest postLocadorRequest){
+        PostLocadorResponse postLocadorResponse = locadorService.criar(postLocadorRequest);
 
-
-        return ResponseEntity.created(null).body(criarLocador);
+        return ResponseEntity.created(null).body(postLocadorResponse);
     }
 
     // READ
     @GetMapping
-    public ResponseEntity<List<Locador>> listar(){
-        List<Locador> listaLocadores = locadorService.listar();
+    public ResponseEntity<List<GetLocadorListResponse>> listar(){
+        List<GetLocadorListResponse> listaLocadores = locadorService.listar();
 
         return ResponseEntity.ok(listaLocadores);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Locador> obter(@PathVariable Integer id){
-        Locador obterLocador = locadorService.obter(id);
+    public ResponseEntity<GetLocadorResponse> obter(@PathVariable Integer id){
+        GetLocadorResponse getLocadorResponse = locadorService.obter(id);
 
-        return ResponseEntity.ok(obterLocador);
+        return ResponseEntity.ok(getLocadorResponse);
     }
 
-    // UPDATE
+//    // UPDATE
     @PatchMapping("/{id}")
-    public ResponseEntity<Locador> atualizar(@RequestBody Locador locador, @PathVariable Integer id){
-        Locador atualizarLocador = locadorService.atualizar(locador, id);
+    public ResponseEntity<PatchLocadorResponse> atualizar(@RequestBody @Valid PatchLocadorRequest patchLocadorRequest, @PathVariable Integer id){
+        PatchLocadorResponse atualizarLocador = locadorService.atualizar(patchLocadorRequest, id);
 
         return ResponseEntity.ok(atualizarLocador);
 
